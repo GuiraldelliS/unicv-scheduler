@@ -6,7 +6,7 @@ import { withLazyLoading } from './utils/withLazyLoading'
 const AppRoutes = withLazyLoading(lazy(() => import('./app-routes')))
 const AuthRoutes = withLazyLoading(lazy(() => import('./auth-routes')))
 const Routes = () => {
-  const isAuth = true
+  const isAuth = false
   return (
     <IonReactRouter>{isAuth ? <AppRoutes /> : <AuthRoutes />}</IonReactRouter>
   )

@@ -9,9 +9,9 @@ import { LogoIcon } from '../../../components/ui/Icons'
 const Login = () => {
   return (
     <IonPage>
-      <IonContent fullscreen>
+      <IonContent>
         <Styles.WrapperTitle>
-          <LogoIcon />
+          <LogoIcon size='32' color='red' />
           <h1>| UNIDULE</h1>
         </Styles.WrapperTitle>
         <Styles.Container>

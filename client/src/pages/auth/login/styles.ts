@@ -4,7 +4,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   padding: 0 1rem;
 `
 
@@ -34,12 +33,14 @@ const WrapperTitle = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 3rem 0 5rem 0;
+  padding: 5rem 0;
 
   h1 {
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
+    font-family: 'Bruno Ace', cursive;
+    margin: 0;
   }
 `
 
