@@ -11,12 +11,13 @@ import '@ionic/react/css/normalize.css'
 import '@ionic/react/css/structure.css'
 import '@ionic/react/css/typography.css'
 
-import './theme/variables.css'
+import GlobalStyle from './theme/global'
 
 setupIonicReact()
 
 const App: React.FC = () => (
   <IonApp>
+    <GlobalStyle />
     <IonReactRouter>
       <IonRouterOutlet>
         <Route exact path='/home'>
