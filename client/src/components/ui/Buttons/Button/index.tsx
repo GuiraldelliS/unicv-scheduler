@@ -2,7 +2,7 @@ import React from 'react'
 
 import * as Styled from './styles'
 
-type Props = {
+type Props = React.ComponentProps<typeof Styled.Button> & {
   children: React.ReactNode
   kind?: 'primary' | 'secondary'
   customColor?: string
