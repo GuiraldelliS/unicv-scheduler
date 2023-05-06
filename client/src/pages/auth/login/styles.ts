@@ -7,7 +7,7 @@ const Container = styled.div`
   padding: 0 1rem;
 `
 
-const WrapperForm = styled.div`
+const WrapperForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

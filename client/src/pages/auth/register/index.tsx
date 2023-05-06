@@ -21,7 +21,7 @@ const Register = () => {
           <h5>Informe os dados necessários</h5>
         </Styles.WrapperTitle>
         <Styles.Container>
-          <Styles.WrapperForm>
+          <Styles.WrapperForm onSubmit={(e: any) => e.preventDefault()}>
             <Input label='Nome' kind='secondary' />
             <Input label='E-mail' kind='secondary' />
             <Input label='Telefone' kind='secondary' />

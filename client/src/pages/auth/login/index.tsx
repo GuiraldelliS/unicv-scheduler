@@ -17,7 +17,7 @@ const Login = () => {
           <h1>| UNIDULE</h1>
         </Styles.WrapperTitle>
         <Styles.Container>
-          <Styles.WrapperForm>
+          <Styles.WrapperForm onSubmit={(e: any) => e.preventDefault()}>
             <Input placeholder='Digite seu cpf ou e-mail' />
             <Input placeholder='Digite sua senha' type='password' />
             <Button customColor='#7B9165'>Entrar</Button>
