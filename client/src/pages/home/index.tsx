@@ -1,3 +1,4 @@
+import { useReducer } from 'react'
 import {
   IonContent,
   IonHeader,
@@ -5,9 +6,11 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
-import ExploreContainer from '../components/ExploreContainer'
+import { Button } from '../../components/ui/Buttons'
+import Input from '../../components/ui/Input'
 
 const Home: React.FC = () => {
+  const [open, toggleOpen] = useReducer((open) => !open, false)
   return (
     <IonPage>
       <IonHeader>
@@ -21,7 +24,10 @@ const Home: React.FC = () => {
             <IonTitle size='large'>UNIDULE</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer />
+        <>
+          <Button onClick={toggleOpen}>Primary</Button>
+          <Input kind='secondary' placeholder='CPF' />
+        </>
       </IonContent>
     </IonPage>
   )
