@@ -1,23 +1,14 @@
-import { createGlobalStyle } from "styled-components";
-
-const GlobalStyle = createGlobalStyle`
-  :root {
-    --gradient: linear-gradient(192.04deg, #FFFFFF 0%, #AEAEAE 100%);
-    --green-gradient: linear-gradient(
-      94.16deg,
-      rgba(0, 0, 0, 0.2) 22.97%,
-      rgba(158, 255, 0, 0.2) 93%
-    ),
-    #4A5A3B;
-  }
+:root {
+  --gradient: linear-gradient(192.04deg, #FFFFFF 0%, #AEAEAE 100%);;
+  --green-gradient: linear-gradient(94.16deg, rgba(0, 0, 0, 0.2) 22.97%, rgba(158, 255, 0, 0.2) 93%), #4A5A3B;
+}
 
   body {
     --ion-background-color: var(--gradient);
-    --ion-font-family:'Poppins', sans-serif;
   }
 
   ion-toolbar {
-    --background: var(--green-gradient);
+    --background:  var(--green-gradient);
     --color: white;
   }
 
@@ -28,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     --ion-color-step-150: #262626;
     --ion-color-step-200: #333333;
     --ion-color-step-250: #404040;
+
   }
 
   .ios ion-modal {
@@ -35,6 +27,3 @@ const GlobalStyle = createGlobalStyle`
     --ion-toolbar-background: var(--ion-color-step-150);
     --ion-toolbar-border-color: var(--ion-color-step-250);
   }
-`;
-
-export default GlobalStyle;
