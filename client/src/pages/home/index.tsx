@@ -28,8 +28,6 @@ const Home: React.FC = () => {
 
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
-    mode: 'all',
-    reValidateMode: 'onChange',
   })
 
   const handleTestAlert = () => {
@@ -71,6 +69,7 @@ const Home: React.FC = () => {
             <Input
               placeholder='senha'
               name='password'
+              label='Senha'
               control={control}
               type='password'
             />

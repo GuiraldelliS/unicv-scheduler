@@ -11,9 +11,8 @@ const FormControl = ({ children, ...rest }: FormControlProps) => {
         Label: {
           style: ({ $disabled }) => ({
             fontSize: '16px',
-            fontWeight: 600,
-            marginBottom: '4px',
-            color: 'black',
+            fontWeight: 400,
+            color: '#6F738A',
             opacity: $disabled ? 0.2 : 1,
           }),
         },
