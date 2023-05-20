@@ -2,8 +2,8 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/changeLog.unidule.master.xml
     default-schema: public
-  aplication:
-    name: UniDule
+  application:
+    name: unidule
   datasource:
     url: jdbc:postgresql://localhost:5432/unidule
     driver-class-name: org.postgresql.Driver

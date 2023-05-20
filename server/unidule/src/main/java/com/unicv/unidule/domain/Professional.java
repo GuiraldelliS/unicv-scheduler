@@ -19,8 +19,4 @@ public class Professional implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_GENERATOR)
     @SequenceGenerator(name = SEQ_GENERATOR, sequenceName = SEQ_NAME, allocationSize = 1)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 }

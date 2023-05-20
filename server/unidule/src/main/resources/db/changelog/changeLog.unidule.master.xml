@@ -14,8 +14,15 @@
         </sql>
     </changeSet>
 
+    <changeSet id="20230520093600" author="Matheus Miriani">
+    <createSequence sequenceName="departament_id_seq"/>
+    <createSequence sequenceName="professional_id_seq"/>
+    <createSequence sequenceName="student_id_seq"/>
+    <createSequence sequenceName="user_id_seq"/>
+    </changeSet>
+
     <changeSet id="20230518213100" author="Matheus Miriani">
-        <addColumn tableName="user">
+        <createTable tableName="user">
             <column name="id" type="bigint"/>
             <column name="name" type="varchar(100)"/>
             <column name="document" type="varchar(11)"/>
@@ -23,8 +30,7 @@
             <column name="phone" type="varchar(13)"/>
             <column name="password" type="varchar"/>
             <column name="active_user" type="boolean"/>
-        </addColumn>
-        <addPrimaryKey tableName="user" columnNames="id"/>
+        </createTable>
     </changeSet>
     
     <changeSet id="20230518213700" author="Matheus Miriani">
@@ -52,14 +58,9 @@
     <changeSet id="20230518214100" author="Matheus Miriani">
         <createTable tableName="professional">
             <column name="id" type="bigint"/>
-            <column name="user_id" type="bigint"/>
         </createTable>
         <addPrimaryKey tableName="professional" columnNames="id"/>
 
-        <addForeignKeyConstraint baseTableName="professional" baseColumnNames="user_id"
-                                 constraintName="professional_user_id_FK"
-                                 referencedTableName="user"
-                                 referencedColumnNames="id"/>
     </changeSet>
 
     <changeSet id="20230518214400" author="Matheus Miriani">
@@ -74,9 +75,9 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="20230518214500" author="Matheus Miriani">
+    <changeSet id="20230518214600" author="Matheus Miriani">
         <createTable tableName="appointments">
-            <column name="id" type="bigint"/>
+            <column name="id" type="uuid"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
