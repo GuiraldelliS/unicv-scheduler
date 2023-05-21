@@ -1,5 +1,6 @@
 package com.unicv.unidule.graphqlservice;
 
+import com.unicv.unidule.annotation.GraphQLService;
 import com.unicv.unidule.domain.User;
 import com.unicv.unidule.service.UserService;
 import io.leangen.graphql.annotations.GraphQLArgument;

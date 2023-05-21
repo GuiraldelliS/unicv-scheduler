@@ -1,4 +1,4 @@
-package com.unicv.unidule.graphqlservice;
+package com.unicv.unidule.annotation;
 
 import org.springframework.stereotype.Service;
 
