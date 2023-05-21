@@ -14,10 +14,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import java.net.InetAddress;
 
 @SpringBootApplication
-//@EnableJpaRepositories("com.unicv.unidule.*")
-//@ComponentScan("com.unicv.unidule.*")
-//@EntityScan("com.unicv.unidule.*")
-//@EnableConfigurationProperties({LiquibaseProperties.class, UniduleApplication.class})
 public class UniduleApplication {
 
     private static final Logger log = LoggerFactory.getLogger(UniduleApplication.class);
@@ -53,14 +49,6 @@ public class UniduleApplication {
                 hostAddress,
                 env.getProperty("server.port"),
                 env.getActiveProfiles());
-
-        while (true) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                log.warn("dasdasdsa");
-            }
-        }
     }
 
 }
