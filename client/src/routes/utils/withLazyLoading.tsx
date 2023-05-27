@@ -2,7 +2,7 @@ import { IonSpinner } from '@ionic/react'
 import React, { Suspense } from 'react'
 
 export const withLazyLoading = (
-  Component: React.LazyExoticComponent<(props?: any) => JSX.Element | null>
+  Component: React.LazyExoticComponent<(props?: any) => any>
 ) => {
   const LazyComponent = (props: any = {}) => {
     return (

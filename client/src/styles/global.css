@@ -5,11 +5,18 @@
 
   body {
     --ion-background-color: var(--gradient);
+    --ion-font-family: 'Poppins', sans-serif;
   }
 
   ion-toolbar {
-    --background:  var(--green-gradient);
-    --color: white;
+    --background: transparent;
+    --color: black;
+  }
+
+
+
+  .ion-page {
+    --ion-background-color: white;
   }
 
   .ios body {
