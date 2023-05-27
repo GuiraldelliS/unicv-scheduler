@@ -23,6 +23,7 @@ export type TypographyProps = TextProps & {
   type?: keyof typeof STYLES
   size?: keyof typeof SIZES
   children: React.ReactNode
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void
 }
 
 type Props = Omit<TypographyProps, 'type' | 'size'>

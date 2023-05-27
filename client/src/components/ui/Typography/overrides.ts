@@ -1,17 +1,25 @@
-import {mergeOverrides} from 'baseui';
-import {Overrides} from 'baseui/overrides';
-import {TypographyProps} from '.';
-import {STYLES} from './config';
+import { mergeOverrides } from 'baseui'
+import { Overrides } from 'baseui/overrides'
+import { TypographyProps } from '.'
+import { STYLES } from './config'
 
 type DefaultStyles = {
-  fontSize: [string, string];
-  lineHeight: string | number;
-  tag: keyof JSX.IntrinsicElements;
-};
+  fontSize: [string, string]
+  lineHeight: string | number
+  tag: keyof JSX.IntrinsicElements
+}
 
-export const overrides = ({type, size, ...rest}: Omit<TypographyProps, 'children'>) => {
-  const {fontWeight} = STYLES[type];
-  const {fontSize, lineHeight = 'initial', tag} = STYLES[type][size] as DefaultStyles;
+export const overrides = ({
+  type,
+  size,
+  ...rest
+}: Omit<TypographyProps, 'children'>) => {
+  const { fontWeight } = STYLES[type as keyof typeof STYLES]
+  const {
+    fontSize,
+    lineHeight = 'initial',
+    tag,
+  } = STYLES[type as keyof typeof STYLES][size] as DefaultStyles
 
   const {
     fontSize: propsFontSize,
@@ -29,30 +37,30 @@ export const overrides = ({type, size, ...rest}: Omit<TypographyProps, 'children
     as: propsAs,
     overrides: propsOverrides,
     ...restProps
-  } = rest;
+  } = rest
 
   const getDesiredFontSize = (viewport: 'MOBILE' | 'DESKTOP') => {
     if (propsFontSize) {
       if (Array.isArray(propsFontSize)) {
-        return propsFontSize[viewport === 'DESKTOP' ? 0 : 1];
+        return propsFontSize[viewport === 'DESKTOP' ? 0 : 1]
       }
-      return propsFontSize;
+      return propsFontSize
     }
 
-    return fontSize[viewport === 'DESKTOP' ? 0 : 1];
-  };
+    return fontSize[viewport === 'DESKTOP' ? 0 : 1]
+  }
 
   const getMarginStyle = () => {
     if (margin) {
-      return {margin: margin};
+      return { margin: margin }
     }
     return {
       marginTop: marginTop,
       marginBottom: marginBottom,
       marginLeft: marginLeft,
       marginRight: marginRight,
-    };
-  };
+    }
+  }
 
   return {
     overrides: mergeOverrides(
@@ -75,9 +83,9 @@ export const overrides = ({type, size, ...rest}: Omit<TypographyProps, 'children
           },
         },
       } as Overrides<unknown>,
-      propsOverrides as Overrides<unknown>,
+      propsOverrides as Overrides<unknown>
     ),
     ...restProps,
     as: propsAs || tag,
-  };
-};
+  }
+}
