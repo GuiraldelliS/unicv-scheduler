@@ -18,7 +18,11 @@ export const overrides = ({ size }: { size: Size }) => ({
       borderBottomWidth: '1px',
       borderLeftWidth: '1px',
       borderRightWidth: '1px',
-
+      borderRightColor: '#ECECEC',
+      borderLeftColor: '#ECECEC',
+      borderTopColor: '#ECECEC',
+      borderBottomColor: '#ECECEC',
+      backgroundColor: '#ECECEC',
       opacity: $disabled ? 0.2 : 1,
     }),
   },
@@ -26,6 +30,12 @@ export const overrides = ({ size }: { size: Size }) => ({
     style: () => ({
       paddingLeft: '0px',
       paddingRight: '0px',
+    }),
+  },
+  InputContainer: {
+    style: ({ $disabled }: { $disabled: boolean }) => ({
+      backgroundColor: '#ECECEC',
+      opacity: $disabled ? 0.2 : 1,
     }),
   },
   StartEnhancer: {
