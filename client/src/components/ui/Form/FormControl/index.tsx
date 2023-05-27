@@ -10,7 +10,7 @@ const FormControl = ({ children, ...rest }: FormControlProps) => {
       overrides={{
         Label: {
           style: ({ $disabled }) => ({
-            fontSize: '16px',
+            fontSize: '12px',
             fontWeight: 400,
             color: '#6F738A',
             opacity: $disabled ? 0.2 : 1,

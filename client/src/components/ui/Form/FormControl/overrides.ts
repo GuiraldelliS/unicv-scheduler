@@ -7,10 +7,10 @@ type OverridesParams = {
 export const overrides = () => ({
   Label: {
     style: ({ $disabled }: OverridesParams) => ({
-      fontSize: '16px',
-      fontWeight: 600,
+      fontSize: '12px',
+      fontWeight: 400,
       marginBottom: '4px',
-      color: 'black',
+      color: '#6F738A',
       opacity: $disabled ? 0.2 : 1,
     }),
   },
