@@ -1,24 +1,24 @@
 spring:
   liquibase:
-    change-log: classpath:db/changelog/changeLog.unidule.master.xml
+    change-log: classpath:db/changelog/changeLog.prova.master.xml
     default-schema: public
   application:
     name: unidule
   datasource:
-    url: jdbc:postgresql://localhost:5432/unidule
+    url: jdbc:postgresql://localhost:5432/unidulee
     driver-class-name: org.postgresql.Driver
     password: unidule
     username: unidule
   jpa:
-    properties.hibernate:
-      generate_statistics: false
     hibernate:
       dialect: org.hibernate.dialect.PostgreSQL95alect
       ddl-auto: validate
-      envers:
-        store_data_at_delete: true
     open-in-view: true
     show-sql: true
 
 server:
   port: 8080
+
+application:
+  exigir-autenticacao: false
+  exigir-autorizacao: false
