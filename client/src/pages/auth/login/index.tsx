@@ -15,8 +15,8 @@ const Login = ({ history }) => {
 
   return (
     <IonPage>
+      <Header />
       <IonContent>
-        <Header />
         <Block
           display='flex'
           flexDirection='column'

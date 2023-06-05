@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   IonContent,
   IonHeader,
@@ -5,30 +6,36 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/react'
-import { Button } from '../../components/ui/Buttons'
-import Input from '../../components/ui/Form/Input'
-import * as Yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
 
-import { Heading, Paragraph } from '../../components/ui/Typography'
 import { useAlert } from '../../contexts/AlertContext'
-import Select from '../../components/ui/Form/Select'
-import Textarea from '../../components/ui/Form/Textarea'
-import Section from '../../components/layout/Section'
-import { useForm } from 'react-hook-form'
 
-const schema = Yup.object().shape({
-  password: Yup.string()
-    .required('Senha atual é obrigatória')
-    .min(6, 'Mínimo de 6 caracteres'),
-})
+import TabSelector from '../../components/ui/Form/TabSelector'
+import { mockScheduleData } from './mock'
+import { Block } from 'baseui/block'
+import { Paragraph } from '../../components/ui/Typography'
+import Header from '../../components/layout/Header'
+import { DatePicker } from 'baseui/datepicker'
+import Select from '../../components/ui/Form/Select'
+import { Button } from '../../components/ui/Buttons'
+
+interface ScheduleItem {
+  date: string
+  schedules: {
+    startTime: string
+    endTime: string
+  }[]
+}
+
+const PERIODOS = [
+  { id: 'morning', label: 'Manhã' },
+  { id: 'afternoon', label: 'Tarde' },
+  { id: 'night', label: 'Noite' },
+]
 
 const Home: React.FC = () => {
+  const [periodSelect, setPeriodSelect] = useState('')
+  const [horarioSelect, setHorarioSelect] = useState('')
   const alert = useAlert()
-
-  const { control, handleSubmit } = useForm({
-    resolver: yupResolver(schema),
-  })
 
   const handleTestAlert = () => {
     try {
@@ -46,54 +53,113 @@ const Home: React.FC = () => {
     }
   }
 
-  const handleTestYupValidation = handleSubmit((data) => {
-    console.log(data)
-  })
+  const getScheduleByPeriods = (scheduleData: ScheduleItem[]) => {
+    const scheduleByPeriods = {
+      morning: { period: 'Manhã', schedules: [] },
+      afternoon: { period: 'Tarde', schedules: [] },
+      night: { period: 'Noite', schedules: [] },
+    }
+
+    const periodIntervals = {
+      morning: { start: '08:00', end: '12:00' },
+      afternoon: { start: '13:00', end: '17:00' },
+      night: { start: '18:00', end: '23:59:59' },
+    }
+
+    scheduleData.forEach((item) => {
+      item.schedules.forEach((schedule) => {
+        const startTime = new Date(
+          `${item.date}T${schedule.startTime}:00Z`
+        ).getTime()
+        const endTime = new Date(
+          `${item.date}T${schedule.endTime}:00Z`
+        ).getTime()
+
+        Object.entries(periodIntervals).forEach(([period, interval]) => {
+          const start = new Date(`${item.date}T${interval.start}:00Z`).getTime()
+          const end = new Date(`${item.date}T${interval.end}:00Z`).getTime()
+
+          if (startTime >= start && endTime <= end) {
+            scheduleByPeriods[period].schedules.push(schedule)
+          }
+        })
+      })
+    })
+
+    return scheduleByPeriods
+  }
+
+  const getScheduleByPeriodSelected = () => {
+    if (!periodSelect) return []
+    const scheduleByPeriods = getScheduleByPeriods(mockScheduleData)
+    return scheduleByPeriods[periodSelect]?.schedules
+  }
+
+  const scheduleByPeriodSelected = getScheduleByPeriodSelected()
+
+  const handlePeriodsChange = (periodSelect: string) => {
+    setPeriodSelect(periodSelect)
+  }
+
+  const handleHorarioChange = (horarioSelect: string) => {
+    setHorarioSelect(horarioSelect)
+  }
+
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>UNIDULE</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <Header isAuth />
       <IonContent fullscreen>
-        <IonHeader collapse='condense'>
-          <IonToolbar>
-            <IonTitle size='large'>UNIDULE</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <>
-          <Section>
-            <Button onClick={handleTestYupValidation}>Primary</Button>
-            <Input placeholder='CPF' mask='999.999.999-99' />
-            <Input
-              placeholder='senha'
-              name='password'
-              label='Senha'
-              control={control}
-              type='password'
-            />
-            <Select
-              options={[
-                { label: 'AliceBlue', id: '#F0F8FF' },
-                { label: 'AntiqueWhite', id: '#FAEBD7' },
-                { label: 'Aqua', id: '#00FFFF' },
-                { label: 'Aquamarine', id: '#7FFFD4' },
-                { label: 'Azure', id: '#F0FFFF' },
-                { label: 'Beige', id: '#F5F5DC' },
-              ]}
-            />
-            <Textarea placeholder='Textarea' />
-            <Paragraph.XSmall>Paragraph XSmall</Paragraph.XSmall>
-            <Paragraph.Small>Paragraph Small</Paragraph.Small>
-            <Paragraph.Medium>Paragraph Medium</Paragraph.Medium>
-            <Paragraph.Large>Paragraph Large</Paragraph.Large>
-            <Heading.XSmall>Heading XSmall</Heading.XSmall>
-            <Heading.Small>Heading Small</Heading.Small>
-            <Heading.Medium>Heading Medium</Heading.Medium>
-            <Heading.Large>Heading Large</Heading.Large>
-          </Section>
-        </>
+        <Block display='flex' flexDirection='column' gridRowGap='16px'>
+          <Select placeholder='Selecione o departamento' />
+          <Select placeholder='Selecione o profissional' />
+          <Select placeholder='Selecione o recurso' />
+          <DatePicker
+            placeholder='Selecione a data'
+            overrides={{
+              Input: {
+                style: ({ $theme }) => ({
+                  borderBottom: 'none',
+                  borderTop: 'none',
+                  borderLeft: 'none',
+                  borderRight: 'none',
+                  backgroundColor: 'red',
+                }),
+              },
+            }}
+          />
+          <TabSelector
+            label='Período'
+            value={periodSelect}
+            onChange={handlePeriodsChange}>
+            {PERIODOS.map((data, index) => (
+              <TabSelector.Tab key={index} value={data.id} $disabled={!data}>
+                {data.label}
+              </TabSelector.Tab>
+            ))}
+          </TabSelector>
+          {scheduleByPeriodSelected.length > 0 && periodSelect ? (
+            <TabSelector
+              label='Horários disponíveis'
+              value={horarioSelect}
+              onChange={handleHorarioChange}>
+              {scheduleByPeriodSelected.map((data, index) => (
+                <TabSelector.Tab
+                  key={index}
+                  value={data.startTime}
+                  $disabled={!data}>
+                  {data.startTime}
+                </TabSelector.Tab>
+              ))}
+            </TabSelector>
+          ) : (
+            <Block marginTop='20px'>
+              <Paragraph.Small>Não há horários disponíveis.</Paragraph.Small>
+            </Block>
+          )}
+          <Button size='large' fullWidth>
+            Agendar
+          </Button>
+        </Block>
       </IonContent>
     </IonPage>
   )

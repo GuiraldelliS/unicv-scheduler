@@ -9,8 +9,8 @@ import { Button } from '../../../components/ui/Buttons'
 const Register = () => {
   return (
     <IonPage>
+      <Header title='Tela de login' />
       <IonContent>
-        <Header title='Tela de login' />
         <Block
           display='flex'
           flexDirection='column'
