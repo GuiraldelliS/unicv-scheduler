@@ -1,0 +1,80 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
+
+    <property name="uuid_function" value="uuid_generate_v4()" dbms="postgresql"/>
+
+    <changeSet id="00000000000000" author="Matheus Miriani" failOnError="false">
+        <validCheckSum>true</validCheckSum>
+
+        <sql dbms="postgresql">
+            CREATE EXTENSION IF NOT EXISTS tablefunc;
+            create extension IF NOT EXISTS unaccent;
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        </sql>
+    </changeSet>
+
+    <changeSet id="20230527030000" author="Matheus Miriani">
+        <createSequence sequenceName="user_id_seq"/>
+        <createSequence sequenceName="studant_id_seq"/>
+        <createSequence sequenceName="professional_id_seq"/>
+    </changeSet>
+
+    <changeSet id="20230604121100" author="Matheus Miriani">
+        <createTable tableName="usuario">
+            <column name="id" type="bigint" defaultValueSequenceNext="user_id_seq"/>
+            <column name="name" type="varchar(150)"/>
+            <column name="document" type="varchar(11)"/>
+            <column name="email" type="varchar(200)"/>
+            <column name="phone" type="varchar(15)"/>
+            <column name="password" type="varchar"/>
+            <column name="active_user" type="boolean"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20230604145900" author="Matheus Miriani">
+        <createTable tableName="professional">
+            <column name="id" type="bigint" defaultValueSequenceNext="professional_id_seq"/>
+            <column name="name" type="varchar(150)"/>
+        </createTable>
+        <addPrimaryKey tableName="professional" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="20230604150100" author="Matheus Miriani">
+        <createTable tableName="studant">
+            <column name="id" type="bigint" defaultValueSequenceNext="studant_id_seq"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20230604150500" author="Matheus Miriani">
+        <createTable tableName="departament">
+            <column name="id" type="${uuid_type}" defaultValueComputed="${uuid_function}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar"/>
+            <column name="responsible" type="varchar"/>
+        </createTable>
+        <addPrimaryKey tableName="departament" columnNames="id"/>
+    </changeSet>
+
+    <changeSet id="20230604151200" author="Matheus Miriani">
+        <createTable tableName="professional_departament">
+            <column name="professional_id" type="bigint"/>
+            <column name="departament_id" type="uuid"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="professional_departament" baseColumnNames="departament_id"
+                                 constraintName="professional_departament_departament_id_FK"
+                                 referencedTableName="departament"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="professional_departament" baseColumnNames="professional_id"
+                                 constraintName="professional_departament_professional_id_FK"
+                                 referencedTableName="professional"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

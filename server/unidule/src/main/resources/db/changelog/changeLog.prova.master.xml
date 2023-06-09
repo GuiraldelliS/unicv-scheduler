@@ -1,0 +1,17 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="00000000000000" author="prova" failOnError="false">
+        <validCheckSum>true</validCheckSum>
+
+        <sql dbms="postgresql">
+            create extension unaccent;
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        </sql>
+    </changeSet>
+
+    <includeAll path="db/changelog/0.1.X" filter="br.com.blue.prova.config.ChangeLogFilter" />
+</databaseChangeLog>
