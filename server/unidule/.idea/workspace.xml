@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9d5dc8c5-81bf-455b-a2ba-70244f11bf84" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/domain/Department.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/domain/Professional.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/domain/Studant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/domain/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/graphqlservice/UserGraphQLService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/specification/UserSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/ProvaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/ProvaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/ServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/ServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/annotation/CustomPreAuthorize.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/annotation/CustomPreAuthorize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/annotation/CustomPreAuthorizes.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/annotation/CustomPreAuthorizes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/annotation/GraphQLService.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/annotation/GraphQLService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/ApplicationWebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/ApplicationWebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/ChangeLogFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/ChangeLogFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/CorsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/CorsFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/CustomDataFetcherExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/CustomDataFetcherExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/DataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/DataProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/ProvaBusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/ProvaBusinessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/SllConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/SllConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/UUIDCustomVersionOneStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/UUIDCustomVersionOneStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/properties/ApplicationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/properties/ApplicationProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/NotAuthenticatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/NotAuthenticatedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/OAuth2ResourceServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/OAuth2ResourceServerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/ProvaAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/ProvaAuthentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/CustomAnnotationSecurityMetadataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/CustomAnnotationSecurityMetadataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/CustomMethodSecurityExpressionRoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/CustomMethodSecurityExpressionRoot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/CustomOAuth2MethodSecurityExpressionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/CustomOAuth2MethodSecurityExpressionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/GlobalMethodSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/GlobalMethodSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/OperacaoAuthority.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/OperacaoAuthority.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/ROLE.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/ROLE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/config/security/cliente/Scope.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/controller/GraphQLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/controller/GraphQLController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/domain/Endereco.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/domain/Pessoa.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/dto/GraphQLRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/dto/GraphQLRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/dto/PageableDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/dto/PageableDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/graphqlservice/EnderecoGraphQLService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/graphqlservice/PessoaGraphQLService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/repository/EnderecoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/repository/PessoaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/service/EnderecoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/service/PessoaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/specification/EnderecoSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/specification/PessoaSpecification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/specification/SpecificationBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/specification/config/SpecificationBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/specification/SpecificationDefault.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/specification/config/SpecificationDefault.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/util/SpecificationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/util/SpecificationUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/util/StringValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/java/br/com/blue/prova/util/StringValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/banner.txt" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/banner.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/config/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/db/changelog/0.1.X/changeLog.prova.0.1.0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/db/changelog/0.1.X/changeLog.prova.0.1.0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/db/changelog/changeLog.prova.master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/db/changelog/changeLog.prova.master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/db/changelog/script_database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/db/changelog/script_database.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/css/graphiql.css" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/css/graphiql.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/graphiql.js" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/graphiql.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/es6-promise.auto.js" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/es6-promise.auto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/react-15.0.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/react-15.0.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/react-15.4.2.js" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/react-15.4.2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/react-dom-15.0.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/react-dom-15.0.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/react-dom-15.4.2.js" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/main/resources/static/graphiql/js/vendor/react-dom-15.4.2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidule/src/test/java/br/com/blue/prova/ProvaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unidule/src/test/java/br/com/blue/prova/ProvaApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2QzIadxrAwiIkULeIsK7fmCWLOB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/mathelsz/Desktop/unicv-scheduler/server/unidule",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ProvaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="prova" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.blue.prova.ProvaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9d5dc8c5-81bf-455b-a2ba-70244f11bf84" name="Changes" comment="" />
+      <created>1686350048530</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1686350048530</updated>
+      <workItem from="1686350049552" duration="722000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
