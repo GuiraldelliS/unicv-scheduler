@@ -14,23 +14,28 @@ import { Block } from 'baseui/block'
 import { Heading, Paragraph } from '../../ui/Typography'
 import { Button, KIND, SIZE } from 'baseui/button'
 import { ButtonOverrides } from './overrides'
-import { truncate } from './utils/truncate'
+import { truncate } from '../../../utils/truncate'
 
 interface HeaderProps extends RouteComponentProps {
   title?: string
   isAuth?: boolean
 }
 
-const OPTIONS_PROFILE = [
-  { id: 'agenda', label: 'Minha Agenda' },
-  { divider: true },
-  { id: 'profile', label: 'Configurações do perfil' },
-  { id: 'suporte', label: 'Suporte' },
-  { divider: true },
-  { id: 'logout', label: 'Sair' },
-]
-
 const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
+  const OPTIONS_PROFILE = [
+    {
+      id: 'agenda',
+      label: 'Minha Agenda',
+      onClick: () => {
+        history.push('/schedule')
+      },
+    },
+    { divider: true },
+    { id: 'profile', label: 'Configurações do perfil' },
+    { id: 'suporte', label: 'Suporte' },
+    { divider: true },
+    { id: 'logout', label: 'Sair' },
+  ]
   return (
     <>
       {isAuth ? (
@@ -48,7 +53,15 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
               alignItems='center'
               justifyContent='space-between'
               padding='0 1rem'>
-              <RxHamburgerMenu size='24' />
+              <IonTitle
+                color='black'
+                style={{
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  paddingInline: '0px',
+                }}>
+                Unidule
+              </IonTitle>
               <StatefulPopover
                 placement={PLACEMENT.bottomLeft}
                 triggerType={TRIGGER_TYPE.click}
@@ -119,7 +132,7 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
                                   },
                                 },
                               }}
-                              onClick={() => console.log('opi')}>
+                              onClick={() => option?.onClick?.()}>
                               <Paragraph.Medium>
                                 {option.label}
                               </Paragraph.Medium>
