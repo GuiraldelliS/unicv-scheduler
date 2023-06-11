@@ -1,11 +1,5 @@
 import { useState } from 'react'
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react'
+import { IonContent, IonPage } from '@ionic/react'
 
 import { useAlert } from '../../contexts/AlertContext'
 
@@ -109,7 +103,13 @@ const Home: React.FC = () => {
     <IonPage>
       <Header isAuth />
       <IonContent fullscreen>
-        <Block display='flex' flexDirection='column' gridRowGap='16px'>
+        <Block
+          display='flex'
+          flexDirection='column'
+          gridRowGap='1rem'
+          paddingTop='1rem'
+          paddingLeft='0.5rem'
+          paddingRight='0.5rem'>
           <Select placeholder='Selecione o departamento' />
           <Select placeholder='Selecione o profissional' />
           <Select placeholder='Selecione o recurso' />
@@ -117,13 +117,18 @@ const Home: React.FC = () => {
             placeholder='Selecione a data'
             overrides={{
               Input: {
-                style: ({ $theme }) => ({
-                  borderBottom: 'none',
-                  borderTop: 'none',
-                  borderLeft: 'none',
-                  borderRight: 'none',
-                  backgroundColor: 'red',
-                }),
+                props: {
+                  overrides: {
+                    Root: {
+                      style: () => ({
+                        borderTopWidth: '0px',
+                        borderRightWidth: '0px',
+                        borderLeftWidth: '0px',
+                        borderBottomWidth: '0px',
+                      }),
+                    },
+                  },
+                },
               },
             }}
           />
