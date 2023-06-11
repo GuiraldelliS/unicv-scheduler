@@ -4,6 +4,7 @@ import { IonRouterOutlet } from '@ionic/react'
 import { withLazyLoading } from '../utils/withLazyLoading'
 
 const Home = withLazyLoading(lazy(() => import('../../pages/home')))
+const Schedule = withLazyLoading(lazy(() => import('../../pages/schedule')))
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,9 @@ const AppRoutes = () => {
       </Route>
       <Route exact path='/'>
         <Redirect to='/home' />
+      </Route>
+      <Route path='/schedule'>
+        <Schedule />
       </Route>
     </IonRouterOutlet>
   )
