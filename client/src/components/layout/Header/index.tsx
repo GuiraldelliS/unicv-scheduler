@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import {
   IonHeader,
   IonToolbar,
@@ -8,13 +8,13 @@ import {
 } from '@ionic/react'
 import { StatefulPopover, PLACEMENT, TRIGGER_TYPE } from 'baseui/popover'
 import { RouteComponentProps, withRouter } from 'react-router'
-import { RxHamburgerMenu } from 'react-icons/rx'
 import { Avatar } from 'baseui/avatar'
 import { Block } from 'baseui/block'
 import { Heading, Paragraph } from '../../ui/Typography'
 import { Button, KIND, SIZE } from 'baseui/button'
 import { ButtonOverrides } from './overrides'
 import { truncate } from '../../../utils/truncate'
+import { useAuth0 } from '@auth0/auth0-react'
 
 interface HeaderProps extends RouteComponentProps {
   title?: string
@@ -22,6 +22,8 @@ interface HeaderProps extends RouteComponentProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
+  const { user, logout } = useAuth0()
+
   const OPTIONS_PROFILE = [
     {
       id: 'agenda',
@@ -34,8 +36,9 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
     { id: 'profile', label: 'Configurações do perfil' },
     { id: 'suporte', label: 'Suporte' },
     { divider: true },
-    { id: 'logout', label: 'Sair' },
+    { id: 'logout', label: 'Sair', onClick: () => logout() },
   ]
+
   return (
     <>
       {isAuth ? (
@@ -65,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
               <StatefulPopover
                 placement={PLACEMENT.bottomLeft}
                 triggerType={TRIGGER_TYPE.click}
-                content={
+                content={({ close }) => (
                   <Block
                     minWidth='200px'
                     backgroundColor='white'
@@ -86,20 +89,17 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
                         gridColumnGap='8px'
                         padding='0.5rem 0.5rem'>
                         <Avatar
-                          name='Jane Doe'
+                          name={user?.name}
                           size='scale1000'
-                          src='https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy'
+                          src={user?.picture}
                         />
                         <Block
                           display='flex'
                           flexDirection='column'
                           gridColumnGap='8px'>
-                          <Heading.XSmall>Nome do usuário</Heading.XSmall>
+                          <Heading.XSmall>{user?.name}</Heading.XSmall>
                           <Paragraph.Small>
-                            {truncate(
-                              'usuariosla@gmail.commmmmmmmmmmmmmmmmmmmm',
-                              20
-                            )}
+                            {truncate(user?.email, 20)}
                           </Paragraph.Small>
                         </Block>
                       </Block>
@@ -132,7 +132,10 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
                                   },
                                 },
                               }}
-                              onClick={() => option?.onClick?.()}>
+                              onClick={() => {
+                                option?.onClick?.()
+                                close()
+                              }}>
                               <Paragraph.Medium>
                                 {option.label}
                               </Paragraph.Medium>
@@ -142,13 +145,13 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
                       })}
                     </>
                   </Block>
-                }
+                )}
                 accessibilityType={'tooltip'}>
                 <Button overrides={ButtonOverrides}>
                   <Avatar
-                    name='Jane Doe'
+                    name={user?.name}
                     size='scale1000'
-                    src='https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy'
+                    src={user?.picture}
                   />
                 </Button>
               </StatefulPopover>

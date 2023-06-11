@@ -1,6 +1,7 @@
 import { IonApp, setupIonicReact } from '@ionic/react'
 import { Provider as StyletronProvider } from 'styletron-react'
 import { BaseProvider } from 'baseui'
+import { Auth0Provider } from '@auth0/auth0-react'
 
 import Routes from './routes'
 
@@ -25,13 +26,19 @@ const StyleContextProviders = ({ children }: { children: React.ReactNode }) => {
     </StyletronProvider>
   )
 }
-
 const App: React.FC = () => (
   <IonApp>
     <StyleContextProviders>
-      <AlertContextProvider>
-        <Routes />
-      </AlertContextProvider>
+      <Auth0Provider
+        domain={'dev-meqymczxcmonztxl.us.auth0.com'}
+        clientId={'SEKOimWdFuC426RTXBaOu0jKjvZR0oYh'}
+        authorizationParams={{
+          redirect_uri: window.location.origin,
+        }}>
+        <AlertContextProvider>
+          <Routes />
+        </AlertContextProvider>
+      </Auth0Provider>
     </StyleContextProviders>
   </IonApp>
 )

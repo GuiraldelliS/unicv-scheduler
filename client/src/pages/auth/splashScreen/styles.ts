@@ -5,8 +5,9 @@ export const WrapperActions = styled('div', () => ({
   justifyContent: 'center',
   alignItems: 'center',
   marginTop: '1.5rem',
-  gap: '1rem',
+
   '& > button': {
     flex: 1,
+    width: '100%',
   },
 }))

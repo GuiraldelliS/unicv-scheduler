@@ -1,19 +1,16 @@
 import { IonContent, IonPage } from '@ionic/react'
 import { Block } from 'baseui/block'
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 
 import { Button } from '../../../components/ui/Buttons'
 
 import { colors } from '../../../themes/light-theme'
 import * as Styled from './styles'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const SplashScreen: React.FC = () => {
-  const history = useHistory()
-  const handleRedirect = (e: any, route: string) => {
-    e.preventDefault()
-    history.push(route)
-  }
+  const { loginWithRedirect } = useAuth0()
+
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -28,16 +25,10 @@ const SplashScreen: React.FC = () => {
           <img src='./logo-splash.png' alt='logo' />
           <Styled.WrapperActions>
             <Button
-              kind='outline-dark'
-              size='large'
-              width='130px'
-              onClick={(e) => handleRedirect(e, '/register')}>
-              Cadastrar
-            </Button>
-            <Button
               kind='secondary'
+              width='100%'
               size='large'
-              onClick={(e) => handleRedirect(e, '/login')}>
+              onClick={loginWithRedirect}>
               Iniciar Sessão
             </Button>
           </Styled.WrapperActions>
