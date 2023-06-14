@@ -4,30 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d677756-2aef-43a9-9984-e468fe1ab680" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/domain/Department.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/domain/Professional.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/domain/Studant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/domain/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/graphqlservice/UserGraphQLService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/specification/UserSpecification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/domain/Endereco.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/domain/Pessoa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/graphqlservice/EnderecoGraphQLService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/graphqlservice/PessoaGraphQLService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/repository/EnderecoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/repository/PessoaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/service/EnderecoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/service/PessoaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/specification/EnderecoSpecification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/specification/PessoaSpecification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/specification/SpecificationBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/specification/config/SpecificationBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/specification/SpecificationDefault.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/specification/config/SpecificationDefault.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/application.yml" afterDir="false" />
+    <list default="true" id="6d677756-2aef-43a9-9984-e468fe1ab680" name="Changes" comment="feat: create classes on package specification">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/blue/prova/specification/UserSpecification.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/0.1.X/changeLog.prova.0.1.0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/0.1.X/changeLog.prova.0.1.0.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +25,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -69,8 +50,8 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/mathe/OneDrive/Área de Trabalho/unidule",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Grupo Azul/apphealth-back",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -105,6 +86,42 @@
       <workItem from="1685888462569" duration="20105000" />
       <workItem from="1686350421978" duration="87000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: create classes on package domain">
+      <created>1686712823017</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1686712823017</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: create classes on package graphqlservice">
+      <created>1686713159103</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1686713159103</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: create classes on package repository">
+      <created>1686713183777</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686713183777</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: create classes on package service">
+      <created>1686713197778</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686713197778</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: create classes on package specification">
+      <created>1686713209749</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1686713209749</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,5 +137,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: create classes on package domain" />
+    <MESSAGE value="feat: create classes on package graphqlservice" />
+    <MESSAGE value="feat: create classes on package repository" />
+    <MESSAGE value="feat: create classes on package service" />
+    <MESSAGE value="feat: create classes on package specification" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: create classes on package specification" />
   </component>
 </project>
