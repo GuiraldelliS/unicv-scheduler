@@ -19,35 +19,52 @@
     </changeSet>
 
     <changeSet id="20230527030000" author="Matheus Miriani">
-        <createSequence sequenceName="user_id_seq"/>
+        <createSequence sequenceName="user_master_id_seq"/>
         <createSequence sequenceName="studant_id_seq"/>
         <createSequence sequenceName="professional_id_seq"/>
     </changeSet>
 
     <changeSet id="20230604121100" author="Matheus Miriani">
-        <createTable tableName="usuario">
-            <column name="id" type="bigint" defaultValueSequenceNext="user_id_seq"/>
+        <createTable tableName="user_master">
+            <column name="id" type="bigint" defaultValueSequenceNext="user_master_id_seq"/>
             <column name="name" type="varchar(150)"/>
             <column name="document" type="varchar(11)"/>
             <column name="email" type="varchar(200)"/>
             <column name="phone" type="varchar(15)"/>
             <column name="password" type="varchar"/>
-            <column name="active_user" type="boolean"/>
+            <column name="active_user_master" type="boolean"/>
         </createTable>
+        <addPrimaryKey tableName="user_master" columnNames="id"/>
     </changeSet>
 
     <changeSet id="20230604145900" author="Matheus Miriani">
         <createTable tableName="professional">
             <column name="id" type="bigint" defaultValueSequenceNext="professional_id_seq"/>
             <column name="name" type="varchar(150)"/>
+            <column name="user_master_id" type="bigint"/>
+            <column name="active_professional" type="boolean"/>
         </createTable>
         <addPrimaryKey tableName="professional" columnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="professional" baseColumnNames="user_master_id"
+                                 constraintName="professional_user_master_FK"
+                                 referencedTableName="user_master"
+                                 referencedColumnNames="id"/>
     </changeSet>
 
     <changeSet id="20230604150100" author="Matheus Miriani">
         <createTable tableName="studant">
             <column name="id" type="bigint" defaultValueSequenceNext="studant_id_seq"/>
+            <column name="name" type="varchar"/>
+            <column name="user_master_id" type="bigint"/>
+            <column name="active_studant" type="boolean"/>
         </createTable>
+        <addPrimaryKey tableName="studant" columnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="studant" baseColumnNames="user_master_id"
+                                 constraintName="studant_user_master_FK"
+                                 referencedTableName="user_master"
+                                 referencedColumnNames="id"/>
     </changeSet>
 
     <changeSet id="20230604150500" author="Matheus Miriani">
@@ -57,6 +74,7 @@
             </column>
             <column name="description" type="varchar"/>
             <column name="responsible" type="varchar"/>
+            <column name="active_department" type="boolean"/>
         </createTable>
         <addPrimaryKey tableName="departament" columnNames="id"/>
     </changeSet>
@@ -75,6 +93,29 @@
         <addForeignKeyConstraint baseTableName="professional_departament" baseColumnNames="professional_id"
                                  constraintName="professional_departament_professional_id_FK"
                                  referencedTableName="professional"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="20230613211200" author="Matheus Miriani">
+        <createTable tableName="address">
+            <column name="id" type="${uuid_type}" defaultValueComputed="${uuid_function}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="varchar"/>
+            <column name="neighborhood" type="varchar"/>
+            <column name="house_number" type="varchar"/>
+            <column name="city" type="varchar"/>
+            <column name="zip_code" type="varchar"/>
+            <column name="address_lead" type="boolean"/>
+            <column name="active_address" type="boolean"/>
+            <column name="studant_id" type="bigint"/>
+        </createTable>
+        <addPrimaryKey tableName="address" columnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="address"
+                                 baseColumnNames="studant_id"
+                                 constraintName="address_studant_FK"
+                                 referencedTableName="studant"
                                  referencedColumnNames="id"/>
     </changeSet>
 </databaseChangeLog>
