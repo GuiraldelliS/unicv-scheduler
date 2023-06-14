@@ -25,8 +25,21 @@ public class Department implements Serializable {
     @Column(name = "responsible")
     private String responsible;
 
+    @Column(name = "active_department")
+    private Boolean activeDepartment;
+
     @ManyToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<Professional> professionalList;
+
+    public Department() {
+    }
+
+    public Department(Department department) {
+        this.description = department.getDescription();
+        this.responsible = department.getResponsible();
+        this.activeDepartment = true;
+        this.professionalList = department.getProfessionalList();
+    }
 
     public UUID getId() {
         return id;
@@ -46,6 +59,14 @@ public class Department implements Serializable {
 
     public void setResponsible(String responsible) {
         this.responsible = responsible;
+    }
+
+    public Boolean getActiveDepartment() {
+        return activeDepartment;
+    }
+
+    public void setActiveDepartment(Boolean activeDepartment) {
+        this.activeDepartment = activeDepartment;
     }
 
     public List<Professional> getProfessionalList() {
@@ -72,6 +93,7 @@ public class Department implements Serializable {
     public Department mergeForUpdate(Department department){
         department.setDescription(department.getDescription());
         department.setProfessionalList(department.getProfessionalList());
+        department.setActiveDepartment(department.getActiveDepartment());
 
         return this;
     }
@@ -82,6 +104,7 @@ public class Department implements Serializable {
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", responsible='" + responsible + '\'' +
+                ", activeDepartment=" + activeDepartment +
                 '}';
     }
 }

@@ -6,13 +6,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "usuario")
-public class User implements Serializable {
+@Table(name = "user_master")
+public class UserMaster implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private static final String SEQ_GENERATOR = "user_id_seq_gen";
-    private static final String SEQ_NAME = "user_id_seq";
+    private static final String SEQ_GENERATOR = "user_master_id_seq_gen";
+    private static final String SEQ_NAME = "user_master_id_seq";
 
     @Id
     @Column(name = "id")
@@ -35,20 +35,20 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "active_user")
-    private Boolean activeUser;
+    @Column(name = "active_user_master")
+    private Boolean activeUserMaster;
 
-    public User() {
+    public UserMaster() {
 
     }
 
-    public User(User user){
-        this.name = user.getName();
-        this.name = user.getDocument();
-        this.email = user.getEmail();
-        this.phone = user.getPhone();
-        this.password = user.getPassword();
-        this.activeUser = true;
+    public UserMaster(UserMaster userMaster){
+        this.name = userMaster.getName();
+        this.name = userMaster.getDocument();
+        this.email = userMaster.getEmail();
+        this.phone = userMaster.getPhone();
+        this.password = userMaster.getPassword();
+        this.activeUserMaster = true;
     }
 
     public Long getId() {
@@ -95,20 +95,20 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Boolean getActiveUser() {
-        return activeUser;
+    public Boolean getActiveUserMaster() {
+        return activeUserMaster;
     }
 
-    public void setActiveUser(Boolean activeUser) {
-        this.activeUser = activeUser;
+    public void setActiveUserMaster(Boolean activeUserMaster) {
+        this.activeUserMaster = activeUserMaster;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
+        UserMaster userMaster = (UserMaster) o;
+        return Objects.equals(id, userMaster.id);
     }
 
     @Override
@@ -116,18 +116,19 @@ public class User implements Serializable {
         return Objects.hash(id);
     }
 
-    public User mergeForUpdate(User user){
-        user.setName(user.getName());
-        user.setDocument(user.getDocument());
-        user.setEmail(user.getEmail());
-        user.setPhone(user.getPhone());
+    public UserMaster mergeForUpdate(UserMaster userMaster){
+        userMaster.setName(userMaster.getName());
+        userMaster.setDocument(userMaster.getDocument());
+        userMaster.setEmail(userMaster.getEmail());
+        userMaster.setPhone(userMaster.getPhone());
+        userMaster.setActiveUserMaster(userMaster.getActiveUserMaster());
 
         return this;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserMaster{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", document=" + document + '\'' +
