@@ -5,7 +5,12 @@ spring:
   application:
     name: Prova
   datasource:
+#    localHost:
     url: jdbc:postgresql://localhost:5432/prova
+
+#    production:
+#    url: jdbc:postgresql://172.106.0.55:10086/prova
+
     driver-class-name: org.postgresql.Driver
     password: unidule
     username: unidule
@@ -17,7 +22,7 @@ spring:
     show-sql: true
 
 server:
-  port: 8080
+  port: 9090
 
 application:
   exigir-autenticacao: false
