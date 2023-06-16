@@ -53,6 +53,7 @@ public class Address implements Serializable {
         this.city = address.getCity();
         this.zipCode = address.getZipCode();
         this.addressLead = address.getAddressLead();
+        this.studant = address.getStudant();
         this.activeAddress = true;
     }
 
