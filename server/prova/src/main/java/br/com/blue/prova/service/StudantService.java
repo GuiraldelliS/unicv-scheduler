@@ -13,39 +13,43 @@ import org.springframework.transaction.annotation.Transactional;
 public class StudantService {
     private final AddressService addressService;
     private final StudantRepository studantRepository;
-    private final UserMasterService userMasterService;
     private final StudantSpecification studantSpecification;
 
-    public StudantService(AddressService addressService, StudantRepository studantRepository, UserMasterService userMasterService, StudantSpecification studantSpecification) {
+    public StudantService(AddressService addressService, StudantRepository studantRepository, StudantSpecification studantSpecification) {
         this.addressService = addressService;
         this.studantRepository = studantRepository;
-        this.userMasterService = userMasterService;
         this.studantSpecification = studantSpecification;
     }
 
     @Transactional(readOnly = true)
-    public Studant findById(Long studantId){
+    public Studant findById(Long studantId) {
         return studantRepository.findById(studantId)
                 .orElseThrow(() -> new RuntimeException("studant not found!"));
     }
 
     @Transactional(readOnly = true)
-    public Page<Studant> findAllStudant(String search, String name, PageableDTO pageableDTO){
+    public Page<Studant> findAllStudant(String search, String name, PageableDTO pageableDTO) {
         return studantRepository.findAll(studantSpecification.filter(search, name), pageableDTO.getPageable());
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    private Studant save(Studant studant){
+    private Studant save(Studant studant) {
         return studantRepository.save(studant);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public Studant create(Studant studant){
-        return save(new Studant(studant));
+    public Studant create(Studant studant) {
+        var saveStudant = this.save(new Studant(studant));
+
+        saveStudant.getAddress().stream()
+                .peek(address -> address.setStudant(saveStudant))
+                .forEach(addressService::create);
+
+        return this.update(saveStudant);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public Studant update(Studant studant){
+    public Studant update(Studant studant) {
         var restoredStudant = this.findById(studant.getId());
 
         restoredStudant.mergeForUpdate(studant);
@@ -54,7 +58,7 @@ public class StudantService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public Studant delete(Studant studant){
+    public Studant delete(Studant studant) {
         var restoredStudant = this.findById(studant.getId());
 
         restoredStudant.setActiveStudant(false);
