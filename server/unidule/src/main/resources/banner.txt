@@ -1,4 +1,0 @@
-${AnsiColor.WHITE}█████████████████████████████████████████████████████████████████████████████████████████████████████
-
-${AnsiColor.BRIGHT_BLUE}Running Spring Boot ${spring-boot.version} ::
-${AnsiColor.DEFAULT}
