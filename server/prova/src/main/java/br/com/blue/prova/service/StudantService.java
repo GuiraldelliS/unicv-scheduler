@@ -13,11 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class StudantService {
     private final AddressService addressService;
     private final StudantRepository studantRepository;
+    private final UserMasterService userMasterService;
     private final StudantSpecification studantSpecification;
 
-    public StudantService(AddressService addressService, StudantRepository studantRepository, StudantSpecification studantSpecification) {
+    public StudantService(AddressService addressService, StudantRepository studantRepository, UserMasterService userMasterService, StudantSpecification studantSpecification) {
         this.addressService = addressService;
         this.studantRepository = studantRepository;
+        this.userMasterService = userMasterService;
         this.studantSpecification = studantSpecification;
     }
 
@@ -39,15 +41,7 @@ public class StudantService {
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Studant create(Studant studant){
-        var saveStudant = save(new Studant(studant));
-        var saveAddress = studant.getAddress().stream()
-                .peek(address -> address.setStudant(saveStudant))
-                .map(addressService::create)
-                .toList();
-
-        saveStudant.setAddress(saveAddress);
-
-        return this.update(saveStudant);
+        return save(new Studant(studant));
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)

@@ -104,7 +104,7 @@ public class Studant implements Serializable {
         this.setName(studant.getName());
         this.setActiveStudant(studant.getActiveStudant());
         this.setUserMaster(studant.getUserMaster());
-        this.updateAddress(studant.getAddress());
+        this.setAddress(studant.getAddress());
 
         return this;
     }
