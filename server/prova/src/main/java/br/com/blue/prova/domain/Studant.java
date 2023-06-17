@@ -1,7 +1,5 @@
 package br.com.blue.prova.domain;
 
-import org.apache.catalina.User;
-
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -28,6 +26,12 @@ public class Studant implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "phone")
+    private String phone;
+
     @Column(name = "active_studant")
     private Boolean activeStudant;
 
@@ -50,6 +54,8 @@ public class Studant implements Serializable {
 
     public Studant(UserMaster userMaster){
         this.name = userMaster.getName();
+        this.email = userMaster.getEmail();
+        this.phone = userMaster.getPhone();
         this.activeStudant = true;
         this.userMaster = userMaster;
     }
@@ -64,6 +70,22 @@ public class Studant implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Boolean getActiveStudant() {
@@ -110,6 +132,8 @@ public class Studant implements Serializable {
 
     public Studant mergeForUpdate(Studant studant){
         this.setName(studant.getName());
+        this.setEmail(studant.getEmail());
+        this.setPhone(studant.getPhone());
         this.setActiveStudant(studant.getActiveStudant());
         this.setUserMaster(studant.getUserMaster());
         this.setAddress(studant.getAddress());

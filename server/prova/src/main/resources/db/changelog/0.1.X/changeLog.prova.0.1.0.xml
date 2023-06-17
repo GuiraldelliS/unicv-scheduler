@@ -28,10 +28,8 @@
         <createTable tableName="user_master">
             <column name="id" type="varchar"/>
             <column name="name" type="varchar(150)"/>
-            <column name="document" type="varchar(11)"/>
             <column name="email" type="varchar(200)"/>
             <column name="phone" type="varchar(15)"/>
-            <column name="password" type="varchar"/>
             <column name="active_user_master" type="boolean"/>
         </createTable>
         <addPrimaryKey tableName="user_master" columnNames="id"/>
@@ -39,10 +37,8 @@
         <insert tableName="user_master">
             <column name="id">50e85ca8-5c92-4d58-9c42-55e36ced030c</column>
             <column name="name">user test</column>
-            <column name="document">99999999999</column>
             <column name="email">usertest@gmail.com</column>
             <column name="phone">99999999999</column>
-            <column name="password">senhatest</column>
             <column name="active_user_master">true</column>
         </insert>
     </changeSet>
@@ -72,6 +68,8 @@
         <createTable tableName="studant">
             <column name="id" type="bigint" defaultValueSequenceNext="studant_id_seq"/>
             <column name="name" type="varchar"/>
+            <column name="email" type="varchar(200)"/>
+            <column name="phone" type="varchar(15)"/>
             <column name="user_master_id" type="varchar"/>
             <column name="active_studant" type="boolean"/>
         </createTable>
@@ -84,7 +82,8 @@
 
         <insert tableName="studant">
             <column name="name">studant test</column>
-            <column name="user_master_id">50e85ca8-5c92-4d58-9c42-55e36ced030c</column>
+            <column name="email">studanttest@gmail.com</column>
+            <column name="phone">99999999999</column>
             <column name="active_studant">true</column>
         </insert>
     </changeSet>

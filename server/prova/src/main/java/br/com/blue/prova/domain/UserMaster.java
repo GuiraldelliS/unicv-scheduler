@@ -18,17 +18,11 @@ public class UserMaster implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "document")
-    private String document;
-
     @Column(name = "email")
     private String email;
 
     @Column(name = "phone")
     private String phone;
-
-    @Column(name = "password")
-    private String password;
 
     @Column(name = "active_user_master")
     private Boolean activeUserMaster;
@@ -39,10 +33,8 @@ public class UserMaster implements Serializable {
     public UserMaster(UserMaster userMaster){
         this.id = userMaster.getId();
         this.name = userMaster.getName();
-        this.document = userMaster.getDocument();
         this.email = userMaster.getEmail();
         this.phone = userMaster.getPhone();
-        this.password = userMaster.getPassword();
         this.activeUserMaster = true;
     }
 
@@ -56,14 +48,6 @@ public class UserMaster implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDocument() {
-        return document;
-    }
-
-    public void setDocument(String document) {
-        this.document = document;
     }
 
     public String getEmail() {
@@ -80,14 +64,6 @@ public class UserMaster implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Boolean getActiveUserMaster() {
@@ -113,7 +89,6 @@ public class UserMaster implements Serializable {
 
     public UserMaster mergeForUpdate(UserMaster userMaster){
         userMaster.setName(userMaster.getName());
-        userMaster.setDocument(userMaster.getDocument());
         userMaster.setEmail(userMaster.getEmail());
         userMaster.setPhone(userMaster.getPhone());
         userMaster.setActiveUserMaster(userMaster.getActiveUserMaster());
@@ -126,10 +101,8 @@ public class UserMaster implements Serializable {
         return "UserMaster{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", document=" + document + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 }
