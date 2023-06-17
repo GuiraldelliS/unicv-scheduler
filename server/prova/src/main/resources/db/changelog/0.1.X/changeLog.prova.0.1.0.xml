@@ -19,7 +19,6 @@
     </changeSet>
 
     <changeSet id="20230527030000" author="Matheus Miriani">
-        <createSequence sequenceName="user_master_id_seq"/>
         <createSequence sequenceName="studant_id_seq"/>
         <createSequence sequenceName="professional_id_seq"/>
         <createSequence sequenceName="appointment_id_seq"/>
@@ -27,7 +26,7 @@
 
     <changeSet id="20230604121100" author="Matheus Miriani">
         <createTable tableName="user_master">
-            <column name="id" type="bigint" defaultValueSequenceNext="user_master_id_seq"/>
+            <column name="id" type="varchar"/>
             <column name="name" type="varchar(150)"/>
             <column name="document" type="varchar(11)"/>
             <column name="email" type="varchar(200)"/>
@@ -42,7 +41,7 @@
         <createTable tableName="professional">
             <column name="id" type="bigint" defaultValueSequenceNext="professional_id_seq"/>
             <column name="name" type="varchar(150)"/>
-            <column name="user_master_id" type="bigint"/>
+            <column name="user_master_id" type="varchar"/>
             <column name="active_professional" type="boolean"/>
         </createTable>
         <addPrimaryKey tableName="professional" columnNames="id"/>
@@ -57,7 +56,7 @@
         <createTable tableName="studant">
             <column name="id" type="bigint" defaultValueSequenceNext="studant_id_seq"/>
             <column name="name" type="varchar"/>
-            <column name="user_master_id" type="bigint"/>
+            <column name="user_master_id" type="varchar"/>
             <column name="active_studant" type="boolean"/>
         </createTable>
         <addPrimaryKey tableName="studant" columnNames="id"/>
