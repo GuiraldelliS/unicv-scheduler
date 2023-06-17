@@ -20,7 +20,7 @@ public class UserGraphQLService {
     }
 
     @GraphQLQuery
-    public UserMaster findUserById(@GraphQLArgument(name = "userId")Long userId){
+    public UserMaster findUserById(@GraphQLArgument(name = "userId")String userId){
         return userMasterService.findById(userId);
     }
 
@@ -34,9 +34,6 @@ public class UserGraphQLService {
 
     @GraphQLMutation
     public UserMaster createUser(@GraphQLArgument(name = "userMaster") UserMaster userMaster){
-        if(nonNull(userMaster.getId())){
-            return userMasterService.update(userMaster);
-        }
         return userMasterService.create(userMaster);
     }
 

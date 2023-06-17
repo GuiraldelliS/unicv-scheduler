@@ -11,14 +11,9 @@ public class UserMaster implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private static final String SEQ_GENERATOR = "user_master_id_seq_gen";
-    private static final String SEQ_NAME = "user_master_id_seq";
-
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_GENERATOR)
-    @SequenceGenerator(name = SEQ_GENERATOR, sequenceName = SEQ_NAME, allocationSize = 1)
-    private Long id;
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -39,19 +34,19 @@ public class UserMaster implements Serializable {
     private Boolean activeUserMaster;
 
     public UserMaster() {
-
     }
 
     public UserMaster(UserMaster userMaster){
+        this.id = userMaster.getId();
         this.name = userMaster.getName();
-        this.name = userMaster.getDocument();
+        this.document = userMaster.getDocument();
         this.email = userMaster.getEmail();
         this.phone = userMaster.getPhone();
         this.password = userMaster.getPassword();
         this.activeUserMaster = true;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

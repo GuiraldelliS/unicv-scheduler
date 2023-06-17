@@ -20,7 +20,7 @@ public class UserMasterService {
     }
 
     @Transactional(readOnly = true)
-    public UserMaster findById(Long userMasterId){
+    public UserMaster findById(String userMasterId){
         return userMasterRepository.findById(userMasterId)
                 .orElseThrow(() -> new RuntimeException("User not fund!"));
     }
