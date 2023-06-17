@@ -22,7 +22,7 @@ spring:
     show-sql: true
 
 server:
-  port: 9090
+  port: 8080
 
 application:
   exigir-autenticacao: false
