@@ -161,6 +161,7 @@
             <column name="end_time" type="time"/>
             <column name="date" type="date"/>
             <column name="appointment_status" type="varchar"/>
+            <column name="resource_type" type="varchar"/>
             <column name="professional_id" type="bigint"/>
             <column name="studant_id" type="bigint"/>
         </createTable>
