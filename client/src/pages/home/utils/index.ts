@@ -5,7 +5,7 @@ export const getVariablesAppointment = ({
   dateSelect,
   professionalSelect,
   resourceSelect,
-  user,
+  student,
 }) => {
   const endTimeParts = horarioSelect.split(':')
   const horaFinal = parseInt(endTimeParts[0])
@@ -30,7 +30,7 @@ export const getVariablesAppointment = ({
       resourceType: resourceSelect[0].id,
       startTime: horarioInicio,
       studant: {
-        id: user.sub,
+        id: student.id,
       },
     },
   }

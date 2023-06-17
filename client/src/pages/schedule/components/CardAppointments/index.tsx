@@ -6,24 +6,39 @@ import { Button } from '../../../../components/ui/Buttons'
 import { truncate } from '../../../../utils/truncate'
 
 const STATUS = {
-  PENDING: 'PENDING',
+  SCHEDULED: 'SCHEDULED',
   FINISHED: 'FINISHED',
 }
 
 const CONFIGS_BY_STATUS = {
-  [STATUS.PENDING]: {
+  [STATUS.SCHEDULED]: {
     color: '#DA973C',
     text: 'Agendamento pendente',
   },
   [STATUS.FINISHED]: {
-    color: 'green',
+    color: '#2ECC71',
     text: 'Agendamento concluído',
   },
 }
-
-const CardAppointments: React.FC<{ status?: 'FINISHED' | 'PENDING' }> = ({
-  status = 'FINISHED',
+type CardAppointmentsProps = {
+  status?: 'FINISHED' | 'SCHEDULED'
+  option: {
+    startTime: string
+    endTime: string
+    professional: {
+      name: string
+      avatar: string
+    }
+  }
+  handleClick: () => void
+}
+const CardAppointments: React.FC<CardAppointmentsProps> = ({
+  status,
+  option,
+  handleClick,
 }) => {
+  console.log({ status })
+  console.log(CONFIGS_BY_STATUS[status])
   return (
     <Block
       display='flex'
@@ -34,7 +49,7 @@ const CardAppointments: React.FC<{ status?: 'FINISHED' | 'PENDING' }> = ({
       overrides={{
         Block: {
           style: {
-            borderLeftColor: CONFIGS_BY_STATUS[status].color,
+            borderLeftColor: CONFIGS_BY_STATUS[status]?.color,
             borderLeftWidth: '2px',
             borderLeftStyle: 'solid',
           },
@@ -45,10 +60,10 @@ const CardAppointments: React.FC<{ status?: 'FINISHED' | 'PENDING' }> = ({
         flexDirection='row'
         justifyContent='space-between'
         alignItems='center'>
-        <Heading.Small>{CONFIGS_BY_STATUS[status].text}</Heading.Small>
+        <Heading.Small>{CONFIGS_BY_STATUS[status]?.text}</Heading.Small>
         <Block display='flex' flexDirection='column' gridColumnGap='0.5rem'>
-          <Heading.XSmall>09:00</Heading.XSmall>
-          <Heading.XSmall color='#ACACAC'>09:30</Heading.XSmall>
+          <Heading.XSmall>{option.startTime}</Heading.XSmall>
+          <Heading.XSmall color='#ACACAC'>{option.endTime}</Heading.XSmall>
         </Block>
       </Block>
       <Block display='flex' flexDirection='row' justifyContent='space-between'>
@@ -62,14 +77,14 @@ const CardAppointments: React.FC<{ status?: 'FINISHED' | 'PENDING' }> = ({
             size='scale900'
             src='https://avatars.dicebear.com/api/human/yard.svg?width=285&mood=happy'
           />
-          <Paragraph.Small>{`Professor: ${truncate(
-            'Leonardo Gabiato Catharin',
-            12
-          )}`}</Paragraph.Small>
+          <Paragraph.Small>
+            {truncate(option.professional.name, 20)}
+          </Paragraph.Small>
         </Block>
-        {status === 'PENDING' && (
+        {status === 'SCHEDULED' && (
           <Button
             size='mini'
+            onClick={handleClick}
             overrides={{
               BaseButton: {
                 style: {

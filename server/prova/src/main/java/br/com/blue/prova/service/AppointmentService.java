@@ -53,35 +53,24 @@ public class AppointmentService {
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     private Appointment save(Appointment appointment){
-        var restoredProfessional = professionalService.findById(appointment.getProfessional().getId());
-
-        if(checkAppointmentAvailability(appointment)){
-            throw new RuntimeException("You already have an appointment at this time for this professional: " + restoredProfessional.getName() + ".");
-        }
-
-        if(restoredProfessional.getActiveProfessional()){
-            throw new RuntimeException("Inactive professional: " + restoredProfessional.getName());
-        }
 
         return appointmentRepository.save(appointment);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Appointment create(Appointment appointment){
+        var restoredProfessional = professionalService.findById(appointment.getProfessional().getId());
+
+        if(checkAppointmentAvailability(appointment)){
+            throw new RuntimeException("You already have an appointment at this time for this professional: " + restoredProfessional.getName() + ".");
+        }
+
         return this.save(new Appointment(appointment));
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Appointment update(Appointment appointment){
         var restoredAppointment = this.findById(appointment.getId());
-
-        if(restoredAppointment.getCompleteDate().isBefore(LocalDateTime.now())){
-            throw new RuntimeException("The date of the appointment is greater than the current date!");
-        }
-
-        if(checkAppointmentStatus(restoredAppointment)){
-            throw new RuntimeException("Because of the appointment status you can't change: " + restoredAppointment.getAppointmentStatus());
-        }
 
         restoredAppointment.mergeForUpdate(appointment);
 
@@ -97,10 +86,4 @@ public class AppointmentService {
         return this.update(restoredAppointment);
     }
 
-    private Boolean checkAppointmentStatus(Appointment appointment){
-        var logical =  Boolean.logicalOr(appointment.getAppointmentStatus().equals(AppointmentStatus.FINISHED),
-                appointment.getAppointmentStatus().equals(AppointmentStatus.CANCELLED));
-
-        return Boolean.logicalOr(logical, appointment.getAppointmentStatus().equals(AppointmentStatus.CONFIRMED));
-    }
 }

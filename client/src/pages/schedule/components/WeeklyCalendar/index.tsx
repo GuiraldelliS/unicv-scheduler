@@ -54,8 +54,6 @@ const WeeklyCalendar = ({
         display={'flex'}
         flexDirection={'row'}
         alignItems={'center'}
-        paddingLeft={'0.5rem'}
-        paddingRight={'0.5rem'}
         justifyContent='space-between'>
         <Heading.XSmall color='#DA973C' textTransform='capitalize'>
           {weekDates[0].toLocaleString('pt-BR', {

@@ -9,7 +9,7 @@ import * as Styled from './styles'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const SplashScreen: React.FC = () => {
-  const { loginWithRedirect } = useAuth0()
+  const { loginWithRedirect, user } = useAuth0()
 
   return (
     <IonPage>

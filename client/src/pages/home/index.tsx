@@ -15,6 +15,7 @@ import {
   createAppointment,
   findAllDepartaments,
   findAllProfessionals,
+  findStudentLogado,
 } from '../../services/appointments.service'
 
 import { mockScheduleData } from './mock'
@@ -33,7 +34,7 @@ const Home: React.FC = () => {
   const [horarioSelect, setHorarioSelect] = useState('')
   const [departments, setDepartments] = useState([])
   const [professional, setProfessional] = useState([])
-
+  const [student, setStudent] = useState(null)
   const [professionalSelect, setProfessionalSelect] = useState(null)
   const [departamentSelect, setDepartamentSelect] = useState(null)
   const [resourceSelect, setResourceSelect] = useState(null)
@@ -42,9 +43,20 @@ const Home: React.FC = () => {
   const { user } = useAuth0()
   const alert = useAlert()
 
+  const getStudentLogado = async () => {
+    try {
+      const variables = { userMasterId: user.sub }
+      const response = await findStudentLogado(variables)
+      setStudent(response)
+    } catch (error) {
+      console.error(error)
+      setStudent(null)
+    }
+  }
+
   const findAllDepartments = async () => {
     try {
-      const response = findAllDepartaments()
+      const response = await findAllDepartaments()
       setDepartments(response as any)
     } catch (error) {
       console.error(error)
@@ -54,7 +66,7 @@ const Home: React.FC = () => {
 
   const findAllProfessional = async () => {
     try {
-      const response = findAllProfessionals()
+      const response = await findAllProfessionals()
       setProfessional(response as any)
     } catch (error) {
       console.error(error)
@@ -79,14 +91,16 @@ const Home: React.FC = () => {
   }
 
   const handleSubmit = async () => {
+    console.log('variables', student)
     try {
       const variables = getVariablesAppointment({
         horarioSelect,
         dateSelect,
         professionalSelect,
         resourceSelect,
-        user,
+        student,
       })
+      console.log(variables)
       await createAppointment(variables)
       alert.open({
         status: 'success',
@@ -94,7 +108,6 @@ const Home: React.FC = () => {
         message: 'Agendamento realizado com sucesso!',
       })
     } catch (error) {
-      console.error(error)
       alert.open({
         status: 'error',
         title: 'ERRO!',
@@ -104,6 +117,7 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
+    getStudentLogado()
     findAllDepartments()
     findAllProfessional()
   }, [])
