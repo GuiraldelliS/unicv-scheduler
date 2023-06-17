@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import static java.util.Objects.isNull;
+
 @Service
 public class StudantService {
     private final AddressService addressService;
@@ -58,6 +60,12 @@ public class StudantService {
     public Studant update(Studant studant) {
         var restoredStudant = this.findById(studant.getId());
 
+        var saveAddres = studant.getAddress().stream()
+                .filter(address -> isNull(address.getId()))
+                        .map(addressService::create)
+                .toList();
+
+        restoredStudant.setAddress(saveAddres);
         restoredStudant.mergeForUpdate(studant);
 
         return this.save(restoredStudant);
