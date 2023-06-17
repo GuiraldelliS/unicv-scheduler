@@ -31,6 +31,11 @@ public class StudantGraphQLService {
         return studantService.findAllStudant(search, name, pageableDTO);
     }
 
+    @GraphQLQuery
+    public Studant findStudantLogado(@GraphQLArgument(name = "userMasterId")String userMasterId){
+        return studantService.findStudantLogado(userMasterId);
+    }
+
     @GraphQLMutation
     public Studant createStudant(@GraphQLArgument(name = "studant")Studant studant){
         if(nonNull(studant.getId())){
