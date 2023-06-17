@@ -15,6 +15,7 @@ import { useAlert } from '../../contexts/AlertContext'
 
 import {
   findStudentById,
+  findStudentLogado,
   updateStudent,
 } from '../../services/appointments.service'
 import Input from '../../components/ui/Form/Input'
@@ -27,7 +28,10 @@ const Profile: React.FC = () => {
 
   const getStudentLogado = async () => {
     try {
-      const response = await findStudentById(1)
+      const studentLogado = await findStudentLogado({
+        userMasterId: user.sub,
+      })
+      const response = await findStudentById(studentLogado.id)
       setStudent(response)
       console.log('response', response)
     } catch (error) {

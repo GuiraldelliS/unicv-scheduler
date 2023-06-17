@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   IonHeader,
   IonToolbar,
@@ -15,6 +15,10 @@ import { Button, KIND, SIZE } from 'baseui/button'
 import { ButtonOverrides } from './overrides'
 import { truncate } from '../../../utils/truncate'
 import { useAuth0 } from '@auth0/auth0-react'
+import {
+  findStudentById,
+  findStudentLogado,
+} from '../../../services/appointments.service'
 
 interface HeaderProps extends RouteComponentProps {
   title?: string
@@ -23,6 +27,25 @@ interface HeaderProps extends RouteComponentProps {
 
 const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
   const { user, logout } = useAuth0()
+
+  const [student, setStudent] = useState(null)
+
+  const getStudentLogado = async () => {
+    try {
+      const studentLogado = await findStudentLogado({
+        userMasterId: user.sub,
+      })
+      const response = await findStudentById(studentLogado.id)
+      setStudent(response)
+    } catch (error) {
+      console.error(error)
+      setStudent(null)
+    }
+  }
+
+  useEffect(() => {
+    getStudentLogado()
+  }, [])
 
   const OPTIONS_PROFILE = [
     {
@@ -102,7 +125,9 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
                           display='flex'
                           flexDirection='column'
                           gridColumnGap='8px'>
-                          <Heading.XSmall>{user?.name}</Heading.XSmall>
+                          <Heading.XSmall>
+                            {student.name || user?.name}
+                          </Heading.XSmall>
                           <Paragraph.Small>
                             {truncate(user?.email, 20)}
                           </Paragraph.Small>
