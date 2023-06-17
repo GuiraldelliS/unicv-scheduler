@@ -61,7 +61,7 @@ public class StudantService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Studant update(Studant studant) {
         var restoredStudant = this.findById(studant.getId());
-        var restoredUserMaster = userMasterService.findById(studant.getUserMaster().getId());
+        var restoredUserMaster = userMasterService.findById(restoredStudant.getUserMaster().getId());
 
         var saveAddres = studant.getAddress().stream()
                 .filter(address -> isNull(address.getId()))

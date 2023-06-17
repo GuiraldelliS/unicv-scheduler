@@ -63,11 +63,15 @@ const Profile: React.FC = () => {
           id: student.id,
           name: student.name,
           email: student.email,
+          phone: student.phone,
           address: Array.from(student.address),
+          userMaster: {
+            id: user.sub,
+          },
         },
       }
       console.log('variables', variables)
-      // await updateStudent(variables)
+      await updateStudent(variables)
       alert.open({
         status: 'success',
         title: 'Sucesso!',
@@ -120,8 +124,8 @@ const Profile: React.FC = () => {
             <Input
               label='Telefone:'
               placeholder='Telefone'
-              value={student?.phone_number}
-              onChange={(e) => console.log('e', e)}
+              value={student?.phone}
+              onChange={(e) => handleChange(e.target.value, 'phone')}
             />
           </div>
           <div>

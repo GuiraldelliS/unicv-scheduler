@@ -142,6 +142,8 @@ export const findStudentById = async (id) => {
         findStudantById(studantId: $studantId){
           name
           id
+          email
+          phone
           address {
             city
             houseNumber
