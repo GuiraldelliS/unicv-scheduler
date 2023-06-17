@@ -46,13 +46,15 @@ public class AppointmentSpecification implements SpecificationDefault<Appointmen
                                              Long professionalId, Long studantId){
         var builder = builder();
 
+        builder.and(this.studantIdAppointment(studantId));
+
         Optional.ofNullable(inicialTime).map(this::inicialTimeAppointment).ifPresent(builder::and);
         Optional.ofNullable(finalTime).map(this::finalTimeAppointment).ifPresent(builder::and);
         Optional.ofNullable(date).map(this::inicialDateAppointment).ifPresent(builder::and);
         Optional.ofNullable(date).map(this::finalDateAppointment).ifPresent(builder::and);
         Optional.ofNullable(appointmentStatus).map(this::appointmentStatus).ifPresent(builder::and);
         Optional.ofNullable(professionalId).map(this::professionalIdAppointment).ifPresent(builder::and);
-        Optional.ofNullable(studantId).map(this::studantIdAppointment).ifPresent(builder::and);
+
 
         return builder.build();
     }

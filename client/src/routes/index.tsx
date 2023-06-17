@@ -17,27 +17,27 @@ const Routes = () => {
     return <div>Oops... {error.message}</div>
   }
 
-  // const generateUserMaster = async () => {
-  //   try {
-  //     const variables = {
-  //       userMaster: {
-  //         email: user.email,
-  //         id: user.sub,
-  //         name: user.name,
-  //         phone: user?.phone_number || null,
-  //       },
-  //     }
-  //     await createUser(variables)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+  const generateUserMaster = async () => {
+    try {
+      const variables = {
+        userMaster: {
+          email: user.email,
+          id: user.sub,
+          name: user.name,
+          phone: user?.phone_number || null,
+        },
+      }
+      await createUser(variables)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
-  // useEffect(() => {
-  //   if (user && isAuthenticated) {
-  //     generateUserMaster()
-  //   }
-  // }, [user, isAuthenticated])
+  useEffect(() => {
+    if (user && isAuthenticated) {
+      generateUserMaster()
+    }
+  }, [user, isAuthenticated])
   return (
     <IonReactRouter>
       {isAuthenticated ? <AppRoutes /> : <AuthRoutes />}

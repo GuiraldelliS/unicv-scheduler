@@ -31,7 +31,7 @@ public class CustomDataFetcherExceptionHandler implements DataFetcherExceptionHa
             error = new ExceptionWhileDataFetching(path, exception, sourceLocation);
         }
 
-        log.warn(error.getMessage(), exception);
+        log.warn(error.getMessage());
 
         return DataFetcherExceptionHandlerResult.newResult().error(error).build();
     }

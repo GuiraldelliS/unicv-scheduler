@@ -1,5 +1,6 @@
 package br.com.blue.prova.service;
 
+import br.com.blue.prova.config.ProvaBusinessException;
 import br.com.blue.prova.domain.Appointment;
 import br.com.blue.prova.dto.PageableDTO;
 import br.com.blue.prova.enumeration.AppointmentStatus;
@@ -62,7 +63,7 @@ public class AppointmentService {
         var restoredProfessional = professionalService.findById(appointment.getProfessional().getId());
 
         if(checkAppointmentAvailability(appointment)){
-            throw new RuntimeException("You already have an appointment at this time for this professional: " + restoredProfessional.getName() + ".");
+            throw new ProvaBusinessException("O profissional: " + restoredProfessional.getName() + " já possui um agendamento neste horário.");
         }
 
         return this.save(new Appointment(appointment));

@@ -108,10 +108,13 @@ const Home: React.FC = () => {
         message: 'Agendamento realizado com sucesso!',
       })
     } catch (error) {
+      const { message } = error
       alert.open({
         status: 'error',
         title: 'ERRO!',
-        message: 'Opss! Ocorreu um erro ao realizar o agendamento!',
+        message: message.includes('Exception')
+          ? 'Opss! Ocorreu um erro ao realizar o agendamento!'
+          : message,
       })
     }
   }

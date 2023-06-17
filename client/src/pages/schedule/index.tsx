@@ -36,7 +36,7 @@ const Schedule: React.FC = () => {
     try {
       const variables = {
         date: dateSelect,
-        studentId: student.id,
+        studantId: student.id,
         pageableDTO: {
           pageNumber: 0,
           pageSize: 999,
