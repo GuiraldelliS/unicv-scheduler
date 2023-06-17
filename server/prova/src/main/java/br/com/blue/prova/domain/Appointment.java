@@ -1,6 +1,7 @@
 package br.com.blue.prova.domain;
 
 import br.com.blue.prova.enumeration.AppointmentStatus;
+import br.com.blue.prova.enumeration.ResourceType;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -37,6 +38,10 @@ public class Appointment implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "appointment_status")
     private AppointmentStatus appointmentStatus;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "resource_type")
+    private ResourceType resourceType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "professional_id")
@@ -103,6 +108,14 @@ public class Appointment implements Serializable {
         this.appointmentStatus = appointmentStatus;
     }
 
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
+    }
+
     public Professional getProfessional() {
         return professional;
     }
@@ -137,6 +150,7 @@ public class Appointment implements Serializable {
         appointment.setEndTime(appointment.getEndTime());
         appointment.setDate(appointment.getDate());
         appointment.setAppointmentStatus(appointment.getAppointmentStatus());
+        appointment.setResourceType(appointment.getResourceType());
         appointment.setProfessional(appointment.getProfessional());
         appointment.setStudant(appointment.getStudant());
 
@@ -151,6 +165,7 @@ public class Appointment implements Serializable {
                 ", endTime=" + endTime +
                 ", date=" + date +
                 ", appointmentStatus=" + appointmentStatus +
+                ", resourceType=" + resourceType +
                 '}';
     }
 }
