@@ -134,3 +134,46 @@ export const updateStatusAppointment = async (variables) => {
   }
   return response.data.data.alterStatusAppointment
 }
+
+export const findStudentById = async (id) => {
+  const response = await axios.post(BACK_END_URL, {
+    query: `
+      query ($studantId: Long){
+        findStudantById(studantId: $studantId){
+          name
+          id
+          address {
+            city
+            houseNumber
+            zipCode
+            street
+          }
+        }
+      }
+    `,
+    variables: {
+      studantId: id,
+    },
+  })
+  if (response.data.errors) {
+    throw new Error(response.data.errors[0].message)
+  }
+  return response.data.data.findStudantById
+}
+
+export const updateStudent = async (variables) => {
+  const response = await axios.post(BACK_END_URL, {
+    query: `
+      mutation ($studant: StudantInput){
+        updateStudant(studant: $studant){
+          id
+        }
+      }
+    `,
+    variables,
+  })
+  if (response.data.errors) {
+    throw new Error(response.data.errors[0].message)
+  }
+  return response.data.data.updateStudant
+}

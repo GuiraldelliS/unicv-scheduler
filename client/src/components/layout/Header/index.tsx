@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   IonHeader,
   IonToolbar,
@@ -33,8 +33,13 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
       },
     },
     { divider: true },
-    { id: 'profile', label: 'Configurações do perfil' },
-    { id: 'suporte', label: 'Suporte' },
+    {
+      id: 'profile',
+      label: 'Configurações do perfil',
+      onClick: () => {
+        history.push('/profile')
+      },
+    },
     { divider: true },
     { id: 'logout', label: 'Sair', onClick: () => logout() },
   ]

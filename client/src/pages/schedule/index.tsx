@@ -82,7 +82,7 @@ const Schedule: React.FC = () => {
 
   return (
     <IonPage>
-      <Header />
+      <Header title='Agenda' />
       <IonContent fullscreen>
         <Block paddingLeft='0.5rem' paddingRight='0.5rem'>
           <WeeklyCalendar

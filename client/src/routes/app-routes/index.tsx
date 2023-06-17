@@ -5,6 +5,7 @@ import { withLazyLoading } from '../utils/withLazyLoading'
 
 const Home = withLazyLoading(lazy(() => import('../../pages/home')))
 const Schedule = withLazyLoading(lazy(() => import('../../pages/schedule')))
+const Profile = withLazyLoading(lazy(() => import('../../pages/profile')))
 
 const AppRoutes = () => {
   return (
@@ -17,6 +18,9 @@ const AppRoutes = () => {
       </Route>
       <Route path='/schedule'>
         <Schedule />
+      </Route>
+      <Route path='/profile'>
+        <Profile />
       </Route>
     </IonRouterOutlet>
   )
