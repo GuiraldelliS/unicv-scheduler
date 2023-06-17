@@ -27,7 +27,7 @@ interface HeaderProps extends RouteComponentProps {
 
 const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
   const { user, logout } = useAuth0()
-
+  const [isOpen, setIsOpen] = useState(false)
   const [student, setStudent] = useState(null)
 
   const getStudentLogado = async () => {
@@ -46,6 +46,10 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
   useEffect(() => {
     getStudentLogado()
   }, [])
+
+  useEffect(() => { 
+    getStudentLogado()
+  }, [isOpen])
 
   const OPTIONS_PROFILE = [
     {
@@ -96,6 +100,8 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
               <StatefulPopover
                 placement={PLACEMENT.bottomLeft}
                 triggerType={TRIGGER_TYPE.click}
+                onOpen={() => setIsOpen(true)}
+                onClose={() => setIsOpen(false)}
                 content={({ close }) => (
                   <Block
                     minWidth='200px'
@@ -126,7 +132,7 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
                           flexDirection='column'
                           gridColumnGap='8px'>
                           <Heading.XSmall>
-                            {student?.name || user?.name}
+                            {student.name || user?.name}
                           </Heading.XSmall>
                           <Paragraph.Small>
                             {truncate(user?.email, 20)}
@@ -177,7 +183,9 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
                   </Block>
                 )}
                 accessibilityType={'tooltip'}>
-                <Button overrides={ButtonOverrides}>
+                <Button
+                  overrides={ButtonOverrides}
+                  onClick={() => setIsOpen(!isOpen)}>
                   <Avatar
                     name={user?.name}
                     size='scale1000'

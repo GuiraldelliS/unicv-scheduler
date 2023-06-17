@@ -118,7 +118,9 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    getStudentLogado()
+    setTimeout(() => {
+      getStudentLogado()
+    }, 1000)
     findAllDepartments()
     findAllProfessional()
   }, [])
