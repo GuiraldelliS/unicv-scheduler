@@ -1,5 +1,7 @@
 package br.com.blue.prova.domain;
 
+import org.apache.catalina.User;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -44,6 +46,12 @@ public class Studant implements Serializable {
         this.activeStudant = true;
         this.userMaster = studant.getUserMaster();
         this.address = studant.getAddress();
+    }
+
+    public Studant(UserMaster userMaster){
+        this.name = userMaster.getName();
+        this.activeStudant = true;
+        this.userMaster = userMaster;
     }
 
     public Long getId() {
