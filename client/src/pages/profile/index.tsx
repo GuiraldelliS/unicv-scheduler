@@ -40,21 +40,21 @@ const Profile: React.FC = () => {
     setStudent({ ...student, [field]: value })
   }
 
-  const handleChangeAddress = (value, field, index) => {
-    const address = Array.from(student.address)
-    address[index] = { ...(address[index] as any), [field]: value }
-    setStudent({ ...student, address })
-  }
-
   const getAddressStudent = () => {
-    if (student?.address.length === 0) return {}
-    const address = student.address.reduce((acc, item) => {
+    if (student?.address?.length === 0) return {}
+    const address = student?.address?.reduce((acc, item) => {
       return { ...acc, ...item }
     }, {})
     return address
   }
 
-  console.log('student', getAddressStudent())
+  const address = getAddressStudent()
+
+  const handleChangeAddress = (value, field) => {
+    const newAddress = { ...address, [field]: value }
+    const newStudent = { ...student, address: [newAddress] }
+    setStudent(newStudent)
+  }
 
   const handleSubmit = async () => {
     try {
@@ -127,20 +127,22 @@ const Profile: React.FC = () => {
             <Input
               label='Cidade:'
               placeholder='Cidade'
-              value={user?.address}
-              onChange={(e) => console.log('e', e)}
+              value={address?.city}
+              onChange={(e) => handleChangeAddress(e.target.value, 'city')}
             />
             <Input
               label='Número:'
               placeholder='Número'
-              value={user?.address}
-              onChange={(e) => console.log('e', e)}
+              value={address?.houseNumber}
+              onChange={(e) =>
+                handleChangeAddress(e.target.value, 'houseNumber')
+              }
             />
             <Input
               label='Rua:'
               placeholder='Rua'
-              value={user?.address}
-              onChange={(e) => console.log('e', e)}
+              value={address?.street}
+              onChange={(e) => handleChangeAddress(e.target.value, 'street')}
             />
           </div>
           <Block marginTop='1.5rem'>
