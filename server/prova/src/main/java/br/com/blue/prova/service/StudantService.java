@@ -37,6 +37,12 @@ public class StudantService {
         return studantRepository.save(studant);
     }
 
+    @Transactional(readOnly = true)
+    public Studant findStudantLogado(String userMasterId){
+        return studantRepository.findStudantLogado(userMasterId)
+                .orElseThrow(() -> new RuntimeException("Student not found!"));
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Studant create(Studant studant) {
         var saveStudant = this.save(new Studant(studant));
