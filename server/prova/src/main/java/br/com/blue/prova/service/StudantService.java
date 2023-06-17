@@ -15,11 +15,13 @@ import static java.util.Objects.isNull;
 public class StudantService {
     private final AddressService addressService;
     private final StudantRepository studantRepository;
+    private final UserMasterService userMasterService;
     private final StudantSpecification studantSpecification;
 
-    public StudantService(AddressService addressService, StudantRepository studantRepository, StudantSpecification studantSpecification) {
+    public StudantService(AddressService addressService, StudantRepository studantRepository, UserMasterService userMasterService, StudantSpecification studantSpecification) {
         this.addressService = addressService;
         this.studantRepository = studantRepository;
+        this.userMasterService = userMasterService;
         this.studantSpecification = studantSpecification;
     }
 
@@ -59,12 +61,15 @@ public class StudantService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public Studant update(Studant studant) {
         var restoredStudant = this.findById(studant.getId());
+        var restoredUserMaster = userMasterService.findById(studant.getUserMaster().getId());
 
         var saveAddres = studant.getAddress().stream()
                 .filter(address -> isNull(address.getId()))
+                .peek(address -> address.setStudant(restoredStudant))
                         .map(addressService::create)
                 .toList();
 
+        restoredStudant.setUserMaster(restoredUserMaster);
         restoredStudant.setAddress(saveAddres);
         restoredStudant.mergeForUpdate(studant);
 
