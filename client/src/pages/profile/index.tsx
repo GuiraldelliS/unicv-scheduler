@@ -107,14 +107,15 @@ const Profile: React.FC = () => {
               onChange={(e) => handleChange(e.target.value, 'name')}
             />
           </div>
-          <div>
+          <Block aria-disabled>
             <Input
               label='Email:'
+              disabled
               placeholder='Email'
               value={student?.email}
               onChange={(e) => handleChange(e.target.value, 'email')}
             />
-          </div>
+          </Block>
           <div>
             <Input
               label='Telefone:'

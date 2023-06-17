@@ -11,7 +11,7 @@ export const overrides = () => ({
       fontWeight: 400,
       marginBottom: '4px',
       color: '#6F738A',
-      opacity: $disabled ? 0.2 : 1,
+      opacity: 1,
     }),
   },
   Caption: {
@@ -19,12 +19,12 @@ export const overrides = () => ({
       fontSize: '14px',
       marginTop: '4px',
       color: $error ? $theme.colors.negative : 'black',
-      opacity: $disabled ? 0.2 : 1,
+      opacity: 1,
     }),
   },
   ControlContainer: {
     style: ({ $disabled }: OverridesParams) => ({
-      opacity: $disabled ? 0.2 : 1,
+      opacity: 1,
     }),
   },
 })

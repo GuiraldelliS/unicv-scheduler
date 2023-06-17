@@ -23,19 +23,20 @@ export const overrides = ({ size }: { size: Size }) => ({
       borderTopColor: '#ECECEC',
       borderBottomColor: '#ECECEC',
       backgroundColor: '#ECECEC',
-      opacity: $disabled ? 0.2 : 1,
+      opacity: 1,
     }),
   },
   Input: {
-    style: () => ({
+    style: ({ $disabled }: { $disabled: boolean }) => ({
       paddingLeft: '0px',
       paddingRight: '0px',
+      opacity: 1,
     }),
   },
   InputContainer: {
     style: ({ $disabled }: { $disabled: boolean }) => ({
       backgroundColor: '#ECECEC',
-      opacity: $disabled ? 0.2 : 1,
+      opacity: 1,
     }),
   },
   StartEnhancer: {
