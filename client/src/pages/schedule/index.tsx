@@ -43,7 +43,6 @@ const Schedule: React.FC = () => {
         },
       }
       const response = await findAllAppointments(variables)
-      console.log(response)
       setAppointments(response)
     } catch (error) {
       console.error(error)

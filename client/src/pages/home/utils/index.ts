@@ -34,6 +34,5 @@ export const getVariablesAppointment = ({
       },
     },
   }
-  console.log(variables)
   return variables
 }

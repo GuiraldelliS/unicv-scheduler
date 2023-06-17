@@ -91,7 +91,6 @@ const Home: React.FC = () => {
   }
 
   const handleSubmit = async () => {
-    console.log('variables', student)
     try {
       const variables = getVariablesAppointment({
         horarioSelect,
@@ -100,7 +99,6 @@ const Home: React.FC = () => {
         resourceSelect,
         student,
       })
-      console.log(variables)
       await createAppointment(variables)
       alert.open({
         status: 'success',

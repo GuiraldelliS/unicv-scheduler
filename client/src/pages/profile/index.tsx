@@ -2,13 +2,10 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { IonContent, IonPage } from '@ionic/react'
 import { Block } from 'baseui/block'
-import { DatePicker } from 'baseui/datepicker'
 import { Avatar } from 'baseui/avatar'
 import { useAuth0 } from '@auth0/auth0-react'
 
-import TabSelector from '../../components/ui/Form/TabSelector'
 import Header from '../../components/layout/Header'
-import Select from '../../components/ui/Form/Select'
 import { Button } from '../../components/ui/Buttons'
 
 import { useAlert } from '../../contexts/AlertContext'
@@ -33,7 +30,6 @@ const Profile: React.FC = () => {
       })
       const response = await findStudentById(studentLogado.id)
       setStudent(response)
-      console.log('response', response)
     } catch (error) {
       console.error(error)
       setStudent(null)
@@ -74,7 +70,6 @@ const Profile: React.FC = () => {
           },
         },
       }
-      console.log('variables', variables)
       await updateStudent(variables)
       alert.open({
         status: 'success',
@@ -129,6 +124,7 @@ const Profile: React.FC = () => {
               label='Telefone:'
               placeholder='Telefone'
               value={student?.phone}
+              mask={'(99) 99999-9999'}
               onChange={(e) => handleChange(e.target.value, 'phone')}
             />
           </div>
@@ -154,7 +150,7 @@ const Profile: React.FC = () => {
               onChange={(e) => handleChangeAddress(e.target.value, 'street')}
             />
           </div>
-          <Block marginTop='1.5rem'>
+          <Block marginTop='1.5rem' marginBottom='1.5rem'>
             <Button size='large' fullWidth onClick={handleSubmit}>
               Salvar
             </Button>

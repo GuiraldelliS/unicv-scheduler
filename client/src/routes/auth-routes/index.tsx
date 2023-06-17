@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import {  Route } from 'react-router-dom'
 import { IonRouterOutlet } from '@ionic/react'
 import { withLazyLoading } from '../utils/withLazyLoading'
 

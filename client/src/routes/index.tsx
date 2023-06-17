@@ -1,5 +1,4 @@
 import { lazy, useEffect } from 'react'
-
 import { IonReactRouter } from '@ionic/react-router'
 import { withLazyLoading } from './utils/withLazyLoading'
 import { useAuth0 } from '@auth0/auth0-react'

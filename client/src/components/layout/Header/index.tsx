@@ -126,7 +126,7 @@ const Header: React.FC<HeaderProps> = ({ title, history, isAuth = false }) => {
                           flexDirection='column'
                           gridColumnGap='8px'>
                           <Heading.XSmall>
-                            {student.name || user?.name}
+                            {student?.name || user?.name}
                           </Heading.XSmall>
                           <Paragraph.Small>
                             {truncate(user?.email, 20)}

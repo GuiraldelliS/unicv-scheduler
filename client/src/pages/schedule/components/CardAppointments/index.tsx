@@ -37,8 +37,6 @@ const CardAppointments: React.FC<CardAppointmentsProps> = ({
   option,
   handleClick,
 }) => {
-  console.log({ status })
-  console.log(CONFIGS_BY_STATUS[status])
   return (
     <Block
       display='flex'
