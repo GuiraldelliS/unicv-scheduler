@@ -16,6 +16,7 @@ import './styles/global.css'
 import { AlertContextProvider } from './contexts/AlertContext'
 import { LightTheme } from './themes/light-theme'
 import { styletron } from './styletron'
+import { CLIENT_ID_AUTH, DOMAIN_AUTH } from './config/constants'
 
 setupIonicReact()
 
@@ -30,8 +31,8 @@ const App: React.FC = () => (
   <IonApp>
     <StyleContextProviders>
       <Auth0Provider
-        domain={'dev-meqymczxcmonztxl.us.auth0.com'}
-        clientId={'SEKOimWdFuC426RTXBaOu0jKjvZR0oYh'}
+        domain={DOMAIN_AUTH}
+        clientId={CLIENT_ID_AUTH}
         authorizationParams={{
           redirect_uri: window.location.origin,
         }}>
