@@ -16,10 +16,12 @@ import java.time.LocalTime;
 
 @Service
 public class AppointmentService {
+    private final ProfessionalService professionalService;
     private final AppointmentRepository appointmentRepository;
     private final AppointmentSpecification appointmentSpecification;
 
-    public AppointmentService(AppointmentRepository appointmentRepository, AppointmentSpecification appointmentSpecification) {
+    public AppointmentService(ProfessionalService professionalService, AppointmentRepository appointmentRepository, AppointmentSpecification appointmentSpecification) {
+        this.professionalService = professionalService;
         this.appointmentRepository = appointmentRepository;
         this.appointmentSpecification = appointmentSpecification;
     }
@@ -39,8 +41,28 @@ public class AppointmentService {
                 appointmentSpecification.filter(inicialTime, finalTime, date, appointmentStatus, professionalId, studantId), pageableDTO.getPageable());
     }
 
+    @Transactional(readOnly = true)
+    private Boolean checkAppointmentAvailability(Appointment appointment){
+        var startTime = appointment.getStartTime();
+        var endTime = appointment.getEndTime();
+        var date = appointment.getDate();
+        var professionalId = appointment.getProfessional().getId();
+
+        return appointmentRepository.checkAppointmentAvailability(startTime, endTime, date, professionalId);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     private Appointment save(Appointment appointment){
+        var restoredProfessional = professionalService.findById(appointment.getProfessional().getId());
+
+        if(checkAppointmentAvailability(appointment)){
+            throw new RuntimeException("You already have an appointment at this time for this professional: " + restoredProfessional.getName() + ".");
+        }
+
+        if(restoredProfessional.getActiveProfessional()){
+            throw new RuntimeException("Inactive professional: " + restoredProfessional.getName());
+        }
+
         return appointmentRepository.save(appointment);
     }
 
@@ -53,8 +75,12 @@ public class AppointmentService {
     public Appointment update(Appointment appointment){
         var restoredAppointment = this.findById(appointment.getId());
 
-        if(restoredAppointment.getDateComplete().isBefore(LocalDateTime.now())){
-            throw new RuntimeException("...");
+        if(restoredAppointment.getCompleteDate().isBefore(LocalDateTime.now())){
+            throw new RuntimeException("The date of the appointment is greater than the current date!");
+        }
+
+        if(checkAppointmentStatus(restoredAppointment)){
+            throw new RuntimeException("Because of the appointment status you can't change: " + restoredAppointment.getAppointmentStatus());
         }
 
         restoredAppointment.mergeForUpdate(appointment);
@@ -69,5 +95,12 @@ public class AppointmentService {
         restoredAppointment.setAppointmentStatus(appointmentStatus);
 
         return this.update(restoredAppointment);
+    }
+
+    private Boolean checkAppointmentStatus(Appointment appointment){
+        var logical =  Boolean.logicalOr(appointment.getAppointmentStatus().equals(AppointmentStatus.FINISHED),
+                appointment.getAppointmentStatus().equals(AppointmentStatus.CANCELLED));
+
+        return Boolean.logicalOr(logical, appointment.getAppointmentStatus().equals(AppointmentStatus.CONFIRMED));
     }
 }
