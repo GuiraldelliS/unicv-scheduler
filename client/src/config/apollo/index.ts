@@ -10,12 +10,9 @@ const httpLink = createHttpLink({
 })
 
 const authLink = setContext(async (_, { headers }) => {
-  const token = 'bearer token here'
-
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
     },
   }
 })

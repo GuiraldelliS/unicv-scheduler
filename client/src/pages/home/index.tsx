@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IonContent, IonPage } from '@ionic/react'
 
 import { useAlert } from '../../contexts/AlertContext'
@@ -11,6 +11,8 @@ import Header from '../../components/layout/Header'
 import { DatePicker } from 'baseui/datepicker'
 import Select from '../../components/ui/Form/Select'
 import { Button } from '../../components/ui/Buttons'
+import axios from 'axios'
+import { BACK_END_URL } from '../../config/constants'
 
 interface ScheduleItem {
   date: string
@@ -29,7 +31,60 @@ const PERIODOS = [
 const Home: React.FC = () => {
   const [periodSelect, setPeriodSelect] = useState('')
   const [horarioSelect, setHorarioSelect] = useState('')
+  const [departments, setDepartments] = useState([])
+  const [professional, setProfessional] = useState([])
+
+  const [professionalSelect, setProfessionalSelect] = useState(null)
+  const [departamentSelect, setDepartamentSelect] = useState(null)
+  const [resourceSelect, setResourceSelect] = useState(null)
   const alert = useAlert()
+
+  const findAllDepartments = async () => {
+    try {
+      const response = await axios.post(BACK_END_URL, {
+        query: `
+          query {
+            findAllDepartment(pageableDTO: { pageNumber: 0, pageSize: 999}) {
+              content {
+                description
+                id
+                }
+              }
+            }
+          `,
+      })
+      setDepartments(response.data.data.findAllDepartment.content)
+    } catch (error) {
+      console.error(error)
+      setDepartments([])
+    }
+  }
+
+  const findAllProfessional = async () => {
+    try {
+      const response = await axios.post(BACK_END_URL, {
+        query: `
+          query {
+            findAllProfessional(pageableDTO: { pageNumber: 0, pageSize: 999}) {
+              content {
+                name
+                id
+                }
+              }
+            }
+          `,
+      })
+      setProfessional(response.data.data.findAllProfessional.content)
+    } catch (error) {
+      console.error(error)
+      setProfessional([])
+    }
+  }
+
+  useEffect(() => {
+    findAllDepartments()
+    findAllProfessional()
+  }, [])
 
   const handleTestAlert = () => {
     try {
@@ -57,7 +112,7 @@ const Home: React.FC = () => {
     const periodIntervals = {
       morning: { start: '08:00', end: '12:00' },
       afternoon: { start: '13:00', end: '17:00' },
-      night: { start: '18:00', end: '23:59:59' },
+      night: { start: '18:00', end: '23:00' },
     }
 
     scheduleData.forEach((item) => {
@@ -110,11 +165,36 @@ const Home: React.FC = () => {
           paddingTop='1rem'
           paddingLeft='0.5rem'
           paddingRight='0.5rem'>
-          <Select placeholder='Selecione o departamento' />
-          <Select placeholder='Selecione o profissional' />
-          <Select placeholder='Selecione o recurso' />
+          <Select
+            placeholder='Selecione o departamento'
+            labelKey='description'
+            valueKey='id'
+            options={departments}
+            value={departamentSelect}
+            onChange={(params) => setDepartamentSelect(params.value)}
+          />
+          <Select
+            placeholder='Selecione o profissional'
+            options={professional}
+            value={professionalSelect}
+            onChange={(params) => setProfessionalSelect(params.value)}
+            labelKey='name'
+            valueKey='id'
+          />
+          <Select
+            placeholder='Selecione o recurso'
+            options={[
+              { id: '1', description: 'Presencial' },
+              { id: '2', description: 'Remoto' },
+            ]}
+            value={resourceSelect}
+            onChange={(params) => setResourceSelect(params.value)}
+            labelKey='description'
+            valueKey='id'
+          />
           <DatePicker
             placeholder='Selecione a data'
+            formatString='dd/MM/yyyy'
             overrides={{
               Input: {
                 props: {
@@ -142,7 +222,7 @@ const Home: React.FC = () => {
               </TabSelector.Tab>
             ))}
           </TabSelector>
-          {scheduleByPeriodSelected.length > 0 && periodSelect ? (
+          {periodSelect && (
             <TabSelector
               label='Horários disponíveis'
               value={horarioSelect}
@@ -156,11 +236,8 @@ const Home: React.FC = () => {
                 </TabSelector.Tab>
               ))}
             </TabSelector>
-          ) : (
-            <Block marginTop='20px'>
-              <Paragraph.Small>Não há horários disponíveis.</Paragraph.Small>
-            </Block>
           )}
+
           <Button size='large' fullWidth>
             Agendar
           </Button>

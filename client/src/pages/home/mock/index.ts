@@ -11,18 +11,37 @@ type ScheduleItem = {
 export const mockScheduleData: ScheduleItem[] = [
   {
     date: '2023-05-15',
-    schedules: [
-      { startTime: '08:00', endTime: '09:00' },
-      { startTime: '09:00', endTime: '10:00' },
-      { startTime: '10:00', endTime: '11:00' },
-      { startTime: '11:00', endTime: '12:00' },
-      { startTime: '13:00', endTime: '14:00' },
-      { startTime: '14:00', endTime: '15:00' },
-      { startTime: '15:00', endTime: '16:00' },
-      { startTime: '17:00', endTime: '18:00' },
-      { startTime: '18:00', endTime: '19:00' },
-      { startTime: '19:00', endTime: '20:00' },
-      { startTime: '20:00', endTime: '21:00' },
-    ],
+    schedules: generateTimeSlots('08:00', '20:00', 30),
   },
 ]
+
+function generateTimeSlots(
+  startTime: string,
+  endTime: string,
+  interval: number
+) {
+  const timeSlots: { startTime: string; endTime: string }[] = []
+  let currentTime = startTime
+
+  while (currentTime < endTime) {
+    const nextTime = addMinutes(currentTime, interval)
+
+    timeSlots.push({ startTime: currentTime, endTime: nextTime })
+    currentTime = nextTime
+  }
+
+  return timeSlots
+}
+
+function addMinutes(time: string, minutes: number): string {
+  const [hours, minutesStr] = time.split(':')
+  const currentMinutes = parseInt(minutesStr)
+
+  let totalMinutes = parseInt(hours) * 60 + currentMinutes + minutes
+  let newHours = Math.floor(totalMinutes / 60)
+    .toString()
+    .padStart(2, '0')
+  let newMinutes = (totalMinutes % 60).toString().padStart(2, '0')
+
+  return `${newHours}:${newMinutes}`
+}

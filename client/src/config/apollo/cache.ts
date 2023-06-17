@@ -1,4 +1,4 @@
-import { FieldFunctionOptions, InMemoryCache } from '@apollo/client'
+import { FieldFunctionOptions, InMemoryCache } from '@apollo/client/cache'
 import { IPagination } from '../../graphql/types'
 
 const defaultMergePagination = (
@@ -21,7 +21,7 @@ export const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        queryExample: {
+        findAllDepartment: {
           keyArgs: ['search'],
           merge: defaultMergePagination,
         },
