@@ -35,6 +35,16 @@
             <column name="active_user_master" type="boolean"/>
         </createTable>
         <addPrimaryKey tableName="user_master" columnNames="id"/>
+
+        <insert tableName="user_master">
+            <column name="id">50e85ca8-5c92-4d58-9c42-55e36ced030c</column>
+            <column name="name">user test</column>
+            <column name="document">99999999999</column>
+            <column name="email">usertest@gmail.com</column>
+            <column name="phone">99999999999</column>
+            <column name="password">senhatest</column>
+            <column name="active_user_master">true</column>
+        </insert>
     </changeSet>
 
     <changeSet id="20230604145900" author="Matheus Miriani">
@@ -50,6 +60,12 @@
                                  constraintName="professional_user_master_FK"
                                  referencedTableName="user_master"
                                  referencedColumnNames="id"/>
+
+        <insert tableName="professional">
+            <column name="name">professional test</column>
+            <column name="user_master_id">50e85ca8-5c92-4d58-9c42-55e36ced030c</column>
+            <column name="active_professional">true</column>
+        </insert>
     </changeSet>
 
     <changeSet id="20230604150100" author="Matheus Miriani">
@@ -65,6 +81,12 @@
                                  constraintName="studant_user_master_FK"
                                  referencedTableName="user_master"
                                  referencedColumnNames="id"/>
+
+        <insert tableName="studant">
+            <column name="name">studant test</column>
+            <column name="user_master_id">50e85ca8-5c92-4d58-9c42-55e36ced030c</column>
+            <column name="active_studant">true</column>
+        </insert>
     </changeSet>
 
     <changeSet id="20230604150500" author="Matheus Miriani">
@@ -77,6 +99,13 @@
             <column name="active_department" type="boolean"/>
         </createTable>
         <addPrimaryKey tableName="departament" columnNames="id"/>
+
+        <insert tableName="departament">
+            <column name="id">55da5b8e-9a01-447c-9cbb-2b01bcbdd705</column>
+            <column name="description">departament test</column>
+            <column name="responsible">responsible test</column>
+            <column name="active_department">true</column>
+        </insert>
     </changeSet>
 
     <changeSet id="20230604151200" author="Matheus Miriani">
@@ -94,6 +123,12 @@
                                  constraintName="professional_departament_professional_id_FK"
                                  referencedTableName="professional"
                                  referencedColumnNames="id"/>
+
+        <insert tableName="professional_departament">
+            <column name="professional_id">1</column>
+            <column name="departament_id">55da5b8e-9a01-447c-9cbb-2b01bcbdd705</column>
+        </insert>
+
     </changeSet>
 
     <changeSet id="20230613211200" author="Matheus Miriani">
