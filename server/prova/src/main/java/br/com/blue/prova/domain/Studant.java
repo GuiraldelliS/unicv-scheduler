@@ -47,6 +47,8 @@ public class Studant implements Serializable {
 
     public Studant(Studant studant){
         this.name = studant.getName();
+        this.email = studant.getEmail();
+        this.phone = studant.getPhone();
         this.activeStudant = true;
         this.userMaster = studant.getUserMaster();
         this.address = studant.getAddress();

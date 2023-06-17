@@ -9,13 +9,11 @@ import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import org.springframework.data.domain.Page;
 
-import static java.util.Objects.*;
-
 @GraphQLService
-public class UserGraphQLService {
+public class UserMasterGraphQLService {
     private final UserMasterService userMasterService;
 
-    public UserGraphQLService(UserMasterService userMasterService) {
+    public UserMasterGraphQLService(UserMasterService userMasterService) {
         this.userMasterService = userMasterService;
     }
 
