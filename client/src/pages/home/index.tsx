@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react'
 import { IonContent, IonPage } from '@ionic/react'
+import { Block } from 'baseui/block'
+import { DatePicker } from 'baseui/datepicker'
+import { useAuth0 } from '@auth0/auth0-react'
+
+import TabSelector from '../../components/ui/Form/TabSelector'
+import Header from '../../components/layout/Header'
+import Select from '../../components/ui/Form/Select'
+import { Button } from '../../components/ui/Buttons'
 
 import { useAlert } from '../../contexts/AlertContext'
 
-import TabSelector from '../../components/ui/Form/TabSelector'
-import { mockScheduleData } from './mock'
-import { Block } from 'baseui/block'
-import { Paragraph } from '../../components/ui/Typography'
-import Header from '../../components/layout/Header'
-import { DatePicker } from 'baseui/datepicker'
-import Select from '../../components/ui/Form/Select'
-import { Button } from '../../components/ui/Buttons'
-import axios from 'axios'
-import { BACK_END_URL } from '../../config/constants'
+import {
+  createAppointment,
+  findAllDepartaments,
+  findAllProfessionals,
+} from '../../services/appointments.service'
 
-interface ScheduleItem {
-  date: string
-  schedules: {
-    startTime: string
-    endTime: string
-  }[]
-}
+import { mockScheduleData } from './mock'
+import { DATE_PICKER_OVERIDES } from './overrides'
+import { getVariablesAppointment } from './utils'
+import { getScheduleByPeriods } from './utils/getScheduleByPeriods'
 
 const PERIODOS = [
   { id: 'morning', label: 'Manhã' },
@@ -38,23 +38,14 @@ const Home: React.FC = () => {
   const [departamentSelect, setDepartamentSelect] = useState(null)
   const [resourceSelect, setResourceSelect] = useState(null)
   const [dateSelect, setDateSelect] = useState(new Date())
+
+  const { user } = useAuth0()
   const alert = useAlert()
 
   const findAllDepartments = async () => {
     try {
-      const response = await axios.post(BACK_END_URL, {
-        query: `
-          query {
-            findAllDepartment(pageableDTO: { pageNumber: 0, pageSize: 999}) {
-              content {
-                description
-                id
-                }
-              }
-            }
-          `,
-      })
-      setDepartments(response.data.data.findAllDepartment.content)
+      const response = findAllDepartaments()
+      setDepartments(response as any)
     } catch (error) {
       console.error(error)
       setDepartments([])
@@ -63,59 +54,12 @@ const Home: React.FC = () => {
 
   const findAllProfessional = async () => {
     try {
-      const response = await axios.post(BACK_END_URL, {
-        query: `
-          query {
-            findAllProfessional(pageableDTO: { pageNumber: 0, pageSize: 999}) {
-              content {
-                name
-                id
-                }
-              }
-            }
-          `,
-      })
-      setProfessional(response.data.data.findAllProfessional.content)
+      const response = findAllProfessionals()
+      setProfessional(response as any)
     } catch (error) {
       console.error(error)
       setProfessional([])
     }
-  }
-
-  const getScheduleByPeriods = (scheduleData: ScheduleItem[]) => {
-    const scheduleByPeriods = {
-      morning: { period: 'Manhã', schedules: [] },
-      afternoon: { period: 'Tarde', schedules: [] },
-      night: { period: 'Noite', schedules: [] },
-    }
-
-    const periodIntervals = {
-      morning: { start: '08:00', end: '12:00' },
-      afternoon: { start: '13:00', end: '17:00' },
-      night: { start: '18:00', end: '23:00' },
-    }
-
-    scheduleData.forEach((item) => {
-      item.schedules.forEach((schedule) => {
-        const startTime = new Date(
-          `${item.date}T${schedule.startTime}:00Z`
-        ).getTime()
-        const endTime = new Date(
-          `${item.date}T${schedule.endTime}:00Z`
-        ).getTime()
-
-        Object.entries(periodIntervals).forEach(([period, interval]) => {
-          const start = new Date(`${item.date}T${interval.start}:00Z`).getTime()
-          const end = new Date(`${item.date}T${interval.end}:00Z`).getTime()
-
-          if (startTime >= start && endTime <= end) {
-            scheduleByPeriods[period].schedules.push(schedule)
-          }
-        })
-      })
-    })
-
-    return scheduleByPeriods
   }
 
   const getScheduleByPeriodSelected = () => {
@@ -134,36 +78,27 @@ const Home: React.FC = () => {
     setHorarioSelect(horarioSelect)
   }
 
-  const createAppointment = async (variables) => {
+  const handleSubmit = async () => {
     try {
-      const response = await axios.post(BACK_END_URL, {
-        query: `
-          mutation ($appointment: AppointmentInput){
-            createAppointment(appointment: $appointment){
-              id
-            }
-          }
-        `,
-        variables,
+      const variables = getVariablesAppointment({
+        horarioSelect,
+        dateSelect,
+        professionalSelect,
+        resourceSelect,
+        user,
       })
-      return response.data.data.createAppointment
+      await createAppointment(variables)
+      alert.open({
+        status: 'success',
+        title: 'Sucesso!',
+        message: 'Agendamento realizado com sucesso!',
+      })
     } catch (error) {
       console.error(error)
-    }
-  }
-
-  const handleSubmit = () => {
-    try {
-      alert.open({
-        status: 'error',
-        title: 'Sucesso!',
-        message: 'Sua solicitação foi enviada com sucesso!',
-      })
-    } catch (error) {
       alert.open({
         status: 'error',
         title: 'ERRO!',
-        message: 'Sua solicitação foi enviada com sucesso!',
+        message: 'Opss! Ocorreu um erro ao realizar o agendamento!',
       })
     }
   }
@@ -203,8 +138,8 @@ const Home: React.FC = () => {
           <Select
             placeholder='Selecione o recurso'
             options={[
-              { id: '1', description: 'Presencial' },
-              { id: '2', description: 'Remoto' },
+              { id: 'IN_PERSON', description: 'Presencial' },
+              { id: 'REMOTE', description: 'Remoto' },
             ]}
             value={resourceSelect}
             onChange={(params) => setResourceSelect(params.value)}
@@ -216,22 +151,7 @@ const Home: React.FC = () => {
             formatString='dd/MM/yyyy'
             value={dateSelect}
             onChange={({ date }) => setDateSelect(date)}
-            overrides={{
-              Input: {
-                props: {
-                  overrides: {
-                    Root: {
-                      style: () => ({
-                        borderTopWidth: '0px',
-                        borderRightWidth: '0px',
-                        borderLeftWidth: '0px',
-                        borderBottomWidth: '0px',
-                      }),
-                    },
-                  },
-                },
-              },
-            }}
+            overrides={DATE_PICKER_OVERIDES}
           />
           <TabSelector
             label='Período'
@@ -259,7 +179,7 @@ const Home: React.FC = () => {
             </TabSelector>
           )}
 
-          <Button size='large' fullWidth>
+          <Button size='large' fullWidth onClick={handleSubmit}>
             Agendar
           </Button>
         </Block>

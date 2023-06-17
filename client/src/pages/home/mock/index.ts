@@ -1,3 +1,5 @@
+import { TIME_SCHEDULE } from '../../../config/constants'
+
 type TimeSlot = {
   startTime: string
   endTime: string
@@ -11,7 +13,7 @@ type ScheduleItem = {
 export const mockScheduleData: ScheduleItem[] = [
   {
     date: '2023-05-15',
-    schedules: generateTimeSlots('08:00', '20:00', 30),
+    schedules: generateTimeSlots('08:00', '20:00', TIME_SCHEDULE),
   },
 ]
 

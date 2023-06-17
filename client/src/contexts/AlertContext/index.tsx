@@ -42,7 +42,7 @@ const AlertContextProvider = ({ children }: { children: React.ReactNode }) => {
             {message}
           </Heading.Small>
         )}
-        <Button fullWidth onClick={handleClose}>
+        <Button kind='secondary' fullWidth onClick={handleClose}>
           Fechar
         </Button>
       </>
