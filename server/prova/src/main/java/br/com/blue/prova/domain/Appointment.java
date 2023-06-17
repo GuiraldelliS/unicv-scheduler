@@ -1,7 +1,6 @@
 package br.com.blue.prova.domain;
 
 import br.com.blue.prova.enumeration.AppointmentStatus;
-import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -92,7 +91,7 @@ public class Appointment implements Serializable {
         return String.valueOf(this.getStartTime().compareTo(this.getEndTime()));
     }
 
-    public LocalDateTime getDateComplete(){
+    public LocalDateTime getCompleteDate(){
         return LocalDateTime.of(this.getDate(), this.getStartTime());
     }
 
