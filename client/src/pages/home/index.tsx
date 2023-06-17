@@ -37,6 +37,7 @@ const Home: React.FC = () => {
   const [professionalSelect, setProfessionalSelect] = useState(null)
   const [departamentSelect, setDepartamentSelect] = useState(null)
   const [resourceSelect, setResourceSelect] = useState(null)
+  const [dateSelect, setDateSelect] = useState(new Date())
   const alert = useAlert()
 
   const findAllDepartments = async () => {
@@ -78,27 +79,6 @@ const Home: React.FC = () => {
     } catch (error) {
       console.error(error)
       setProfessional([])
-    }
-  }
-
-  useEffect(() => {
-    findAllDepartments()
-    findAllProfessional()
-  }, [])
-
-  const handleTestAlert = () => {
-    try {
-      alert.open({
-        status: 'error',
-        title: 'Sucesso!',
-        message: 'Sua solicitação foi enviada com sucesso!',
-      })
-    } catch (error) {
-      alert.open({
-        status: 'error',
-        title: 'ERRO!',
-        message: 'Sua solicitação foi enviada com sucesso!',
-      })
     }
   }
 
@@ -154,6 +134,45 @@ const Home: React.FC = () => {
     setHorarioSelect(horarioSelect)
   }
 
+  const createAppointment = async (variables) => {
+    try {
+      const response = await axios.post(BACK_END_URL, {
+        query: `
+          mutation ($appointment: AppointmentInput){
+            createAppointment(appointment: $appointment){
+              id
+            }
+          }
+        `,
+        variables,
+      })
+      return response.data.data.createAppointment
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleSubmit = () => {
+    try {
+      alert.open({
+        status: 'error',
+        title: 'Sucesso!',
+        message: 'Sua solicitação foi enviada com sucesso!',
+      })
+    } catch (error) {
+      alert.open({
+        status: 'error',
+        title: 'ERRO!',
+        message: 'Sua solicitação foi enviada com sucesso!',
+      })
+    }
+  }
+
+  useEffect(() => {
+    findAllDepartments()
+    findAllProfessional()
+  }, [])
+
   return (
     <IonPage>
       <Header isAuth />
@@ -195,6 +214,8 @@ const Home: React.FC = () => {
           <DatePicker
             placeholder='Selecione a data'
             formatString='dd/MM/yyyy'
+            value={dateSelect}
+            onChange={({ date }) => setDateSelect(date)}
             overrides={{
               Input: {
                 props: {
