@@ -59,6 +59,7 @@ public class Appointment implements Serializable {
         this.endTime = appointment.getEndTime();
         this.date = appointment.getDate();
         this.appointmentStatus = appointment.getAppointmentStatus();
+        this.resourceType = appointment.getResourceType();
         this.professional = appointment.getProfessional();
         this.studant = appointment.getStudant();
 
